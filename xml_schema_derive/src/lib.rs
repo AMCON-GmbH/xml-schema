@@ -10,7 +10,7 @@ use syn::DeriveInput;
 
 mod attribute;
 mod expander;
-mod xsd;
+pub mod xsd;
 
 #[proc_macro_derive(XmlSchema, attributes(xml_schema))]
 pub fn xml_schema_derive(input: proc_macro::TokenStream) -> proc_macro::TokenStream {

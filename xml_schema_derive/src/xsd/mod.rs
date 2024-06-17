@@ -12,7 +12,7 @@ mod max_occurences;
 mod qualification;
 mod restriction;
 mod rust_types_mapping;
-mod schema;
+pub mod schema;
 mod sequence;
 mod simple_content;
 mod simple_type;
