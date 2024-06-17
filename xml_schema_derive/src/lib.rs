@@ -12,7 +12,6 @@ mod attribute;
 mod expander;
 pub mod xsd;
 
-#[proc_macro_derive(XmlSchema, attributes(xml_schema))]
 pub fn xml_schema_derive(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
   let input: DeriveInput = syn::parse2(proc_macro2::TokenStream::from(input)).unwrap();
 
