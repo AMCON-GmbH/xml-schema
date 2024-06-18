@@ -1,5 +1,4 @@
-use crate::xsd::{attribute::Attribute, Implementation, XsdContext};
-use proc_macro2::TokenStream;
+use crate::xsd::{attribute::Attribute};
 
 #[derive(Clone, Default, Debug, PartialEq, YaDeserialize)]
 #[yaserde(
@@ -18,22 +17,4 @@ pub struct Annotation {
       namespace = "xs: http://www.w3.org/2001/XMLSchema"
     )]
   pub documentation: Vec<String>,
-}
-
-impl Implementation for Annotation {
-  fn implement(
-    &self,
-    _namespace_definition: &TokenStream,
-    _prefix: &Option<String>,
-    _context: &XsdContext,
-  ) -> TokenStream {
-    log::info!("Generate annotation");
-
-    let documentation = self
-      .documentation
-      .iter()
-      .map(|documentation| quote!(#[doc = #documentation]));
-
-    quote!(#(#documentation)*)
-  }
 }
