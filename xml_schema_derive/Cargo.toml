@@ -17,6 +17,9 @@ name = "xml_schema_derive"
 [features]
 default = ["reqwest/default-tls"]
 
+[dev-dependencies]
+pretty_assertions = "1.4.0"
+
 [dependencies]
 darling = "0.20.3"
 heck = "0.4"

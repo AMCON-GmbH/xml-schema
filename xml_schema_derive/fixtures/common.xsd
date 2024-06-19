@@ -1,0 +1,2854 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="https://eticore.org/common/3"
+           xmlns:meta="urn:ets:metainfo"
+           version="3.0.0-rc.1"
+           targetNamespace="https://eticore.org/common/3"
+           elementFormDefault="qualified">
+
+    <xs:annotation>
+        <xs:documentation>
+            This schema contains elements for generated data types coming from
+            the schemas xxx-generated.xsd which contains ASN.1 converted XSD types
+            and fields of the ASN.1 descriptions.
+            The elements in this schema allow to reference them in other data types
+            while the name remains fix.
+        </xs:documentation>
+        <xs:appinfo>
+            <meta:deletedXmlConcepts>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/ion/2">ASymSchluessel_ID_Type</meta:name>
+                    <meta:reason>Identification via Subject</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/ion/2">NmTransaktionsTyp_CODE</meta:name>
+                    <meta:reason>Obsolete</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/ion/2">TX_SMIT_Type</meta:name>
+                    <meta:reason>Inheritance avoided</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/ion/2">TX_SANF_Type</meta:name>
+                    <meta:reason>Inheritance avoided</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/ion/2">TXBS</meta:name>
+                    <meta:reason>Merged with common response</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/ion/2">SAM_ID_Type</meta:name>
+                    <meta:reason>Identified via AppInstanceId</meta:reason>
+                </meta:deleted>
+
+
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/ion/2">appNmTransaktionMAC_Type</meta:name>
+                    <meta:reason>MAC obsolete in ION</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:name>
+                    <meta:reason>MAC obsolete in ION</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/ion/2">TransSignatur_Type</meta:name>
+                    <meta:reason>Obsolete</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/ion/2">TXBRequest</meta:name>
+                    <meta:reason>Obsolete</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/ion/2">TXARequest</meta:name>
+                    <meta:reason>Obsolete</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/ion/2">BestaetigungStatus_CODE_Type</meta:name>
+                    <meta:reason>Replaced with new event system (warnings)</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/ion/2">MeldungStatus_CODE_Type</meta:name>
+                    <meta:reason>Replaced with new event system (warnings)</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/ion/2">AuftragsTyp_CODE</meta:name>
+                    <meta:reason>Determined by order type</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/ion/2">PrintableString</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">BitString1</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">BitString8</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">BitString16</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">DateTimeCompact</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">DateCompact</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">Datef</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">INT1</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">INT2</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">INT3</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">INT4</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">OctetString1</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">OctetString1</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">OctetString4</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">OctetString8</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">OctetString12</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">OctetString128</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">OctetString200</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">ReferenceNumberOne</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">ReferenceNumberTwo</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">ReferenceNumberThree</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">ReferenceNumberFour</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">SequenceNumberOne</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">SequenceNumberTwo</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">SequenceNumberThree</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/common/types/2">SequenceNumberFour</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/kvp-dl-pv/2">Signed_INT3</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/kvp-dl-pv/2">Amount65535</meta:name>
+                    <meta:reason>Not used anymore</meta:reason>
+                </meta:deleted>
+            </meta:deletedXmlConcepts>
+        </xs:appinfo>
+    </xs:annotation>
+
+    <xs:include schemaLocation="../../../../org/eticore/common/3/cv-certificates-generated.xsd"/>
+    <xs:include schemaLocation="../../../../org/eticore/common/3/common-generated.xsd"/>
+    <xs:include schemaLocation="../../../../org/eticore/common/3/sam-generated.xsd"/>
+    <xs:include schemaLocation="../../../../org/eticore/common/3/user-medium-generated.xsd"/>
+    <xs:include schemaLocation="../../../../org/eticore/common/3/payment-generated.xsd"/>
+
+    <xs:include schemaLocation="../../../../org/eticore/common/3/common-enums.xsd"/>
+    <xs:include schemaLocation="../../../../org/eticore/common/3/common-event-enums.xsd"/>
+
+    <xs:simpleType name="ZonedDateTime" id="_e382223e-33b9-41e8-ae79-efe5dd9cb28c">
+        <xs:annotation>
+            <xs:documentation>
+                Derivative of xs:dateTime with required timezone component.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/common/types/2">DateTime</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:dateTime">
+            <xs:pattern value=".*Z"/>
+            <xs:pattern value=".*[+\-]\d\d:\d\d"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ZonedDate" id="_099d757c-2af9-46b1-bd6d-a6073b9e7c39">
+        <xs:annotation>
+            <xs:documentation>
+                Derivative of xs:date with required timezone component.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/common/types/2">Date</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:date">
+            <xs:pattern value=".*Z"/>
+            <xs:pattern value=".*[+\-]\d\d:\d\d"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="OrganisationalUnit" id="_6c807dfd-b979-4be9-becf-4b798a7d7bcb">
+        <xs:annotation>
+            <xs:documentation>
+                Combination of organisation and its role in the IFM context.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="organisationId" type="tns:OrganisationId"/>
+            <xs:element name="role" type="tns:PartnerRoleCode"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SymmetricKeyId" id="_f4cdf6ff-955b-4a82-9f6b-9020a5b081ad">
+        <xs:annotation>
+            <xs:documentation>
+                Data type for a unique identifier of a symmetric secret master key for authentication purposes.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">SymSchluessel_ID_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="keyReference" type="tns:KeyReference">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>schluesselVersion</meta:name>
+                                </meta:old>
+                                <meta:old>
+                                    <meta:name>schluesselNummer</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="ListCycleNumber" id="_c149f96a-e5fb-4180-ba7c-96c527793003">
+        <xs:annotation>
+            <xs:documentation>
+                Strictly monotonically ascending sequence number which identifies the list cycle.
+                The sequence number is increased at a certain time and remains active for a certain timespan
+                (e.g. once a day at 01:00 AM).
+                This system wide cycle number does not depend on organisations or roles.
+                The cycle number references all list objects, configuration objects,
+                etc. with their states for the active phase of the cycle.
+                In case of a request for an incremental list, the last used cycle number has to be passed
+                to the list service. Then all list content changes between this last cycle number and the current
+                active cycle will be returned to the caller.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">SperrlistenZyklusNummer_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:nonNegativeInteger"/>
+    </xs:simpleType>
+
+    <xs:complexType name="ListCycle" id="_2f4193a5-dbd9-45a0-b59d-e1d99400488d">
+        <xs:annotation>
+            <xs:documentation>
+                Structure which contains meta information about the current or used cycle in the hotlist or action list service.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="listCycleNumber" type="tns:ListCycleNumber">
+                <xs:annotation>
+                    <xs:documentation>
+                        The list cycle number identifies the cycle based lists including their objects.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>zyklusNummer</meta:name>
+                                </meta:old>
+                                <meta:old>
+                                    <meta:name>amListeNummer</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/common/types/2">ReferenceNumberFour</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="listCycleTimestamp" type="tns:ZonedDateTime">
+                <xs:annotation>
+                    <xs:documentation>
+                        The cycle time stamp specifies the list's creation time. All included entries are
+                        - regarding their creation date in the hotlist / action list service - older than this time stamp.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>zyklusDatum</meta:name>
+                                </meta:old>
+                                <meta:old>
+                                    <meta:name>amListeZeitstempel</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/common/types/2">DateTime</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="IncrementalListCycleInformation" id="_871ecb7b-1fcd-403b-9726-da99c57e797b">
+        <xs:annotation>
+            <xs:documentation>
+                Structure which contains meta information about the current or used cycle in the hotlist or action list service.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="fromListCycle" type="tns:ListCycle">
+                <xs:annotation>
+                    <xs:documentation>
+                        The cycle that is considered the base for the changes listed as entries (additions or
+                        removals).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>zyklusNummerVon</meta:name>
+                                </meta:old>
+                                <meta:old>
+                                    <meta:name>zyklusDatumVon</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="untilListCycle" type="tns:ListCycle">
+                <xs:annotation>
+                    <xs:documentation>
+                        The most recent cycle that is considered for changes to list entries (additions or
+                        removals) compared to the cycle referenced via fromListCycle.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>zyklusNummerBis</meta:name>
+                                </meta:old>
+                                <meta:old>
+                                    <meta:name>zyklusDatumBis</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="Checksum" id="_4f7a3bae-9f4a-4490-bb5d-6b2f55014b11">
+        <xs:annotation>
+            <xs:documentation>
+                Checksum
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:hexBinary"/>
+    </xs:simpleType>
+
+    <xs:complexType name="ListVerificationInformation" id="_b9dacac9-c278-44a6-9df4-bbcba61b8336">
+        <xs:annotation>
+            <xs:documentation>
+                Structure which contains information used to verify the consistency and integrity of the
+                referenced hotlist or action list.
+                May be used after an incremental hotlist / action list was incorporated into a system's inventory
+                of hotlist / action list entries to verify that this inventory is consistent with the full list
+                that would have been provided by the hotlist service / action management service.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="listCycleNumber" type="tns:ListCycleNumber">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identifies the cycle of the (full) list that the checksum is calculated over.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="checksumOfCorrespondingFullList" type="tns:Checksum">
+                <xs:annotation>
+                    <xs:documentation>
+                        Checksum of the full list.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SamHotlistingDemand" id="_5d4a9f6e-21fa-47ad-b223-fd3994e559d8">
+        <xs:annotation>
+            <xs:documentation>
+                Structure which contains data needed to demand for adding a SAM to the hotlist.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ah/2">TXSANFS_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="blockingReason" type="tns:BlockingReason">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>sperrSperrgrund</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="samId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>ID of the SAM which has to be added to the SAM hotlist.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>samSperrkandidat</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:choice>
+                <xs:element name="samActionCounter" type="tns:ActionCounter">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Action counter from which authorised actions are affected and compromised.
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <meta:metaInfo>
+                                <meta:xml>
+                                    <meta:old>
+                                        <meta:name>samSequenznummer</meta:name>
+                                        <meta:type xmlns="http://vdv/ka/common/types/2">ReferenceNumberFour</meta:type>
+                                    </meta:old>
+                                </meta:xml>
+                                <meta:remarks>now only incremented for non-issuing actions</meta:remarks>
+                            </meta:metaInfo>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="samEntitlementIssuanceCounter" type="tns:EntitlementIssuanceCounter">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Entitlement issuance counter from which produced entitlements are affected and compromised.
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <meta:metaInfo>
+                                <meta:xml>
+                                    <meta:old>
+                                        <meta:name>samSequenznummer</meta:name>
+                                        <meta:type xmlns="http://vdv/ka/common/types/2">ReferenceNumberFour</meta:type>
+                                    </meta:old>
+                                </meta:xml>
+                                <meta:remarks>now only incremented for entitlement issuances</meta:remarks>
+                            </meta:metaInfo>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BlockingReason" id="_1405d077-4725-49cd-b488-47e867694c9a">
+        <xs:annotation>
+            <xs:documentation>
+                Convenient type to combine a blocking reason code with an optional text field for further information.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="blockingReasonCode" type="tns:BlockingReasonCode"/>
+            <xs:element name="eventIdentifier" minOccurs="0" type="tns:EventIdentifier">
+                <xs:annotation>
+                    <xs:documentation>
+                        String-based identifier which specifies the event.
+                        The identifier gives a first idea of the event.
+                        Must be one of the identifiers which are defined either globally
+                        (in Common[Warning|Error]Enum)
+                        or service-wide ($service[Warning|Error]Enum).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>meldungStatus</meta:name>
+                                </meta:old>
+                                <meta:old>
+                                    <meta:name>bestaetigungStatus</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="blockingReasonText" type="tns:BlockingReasonText" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="BlockingReasonText" id="_8e4d8bc8-c1fa-4a73-b932-55931892ffda">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a free text for blocking reason description with a maximum length of 1024 bytes.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="1024"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="CaCertificateRepository" id="_afb261d5-11c8-4f02-bedd-03c934dcce66">
+        <xs:annotation>
+            <xs:documentation>
+                Repository of a CA certificates. Distributed to back-office systems and terminals.
+                Used to build a trustworthy certificate chain when verifying a CV certificate in software (i.e., not using a SAM or UM application).
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="caCertificate" type="xs:hexBinary" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>CA certificate</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-cvCertificates.CvCertificate</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CvCertificateRevocationListEntry" id="_e866fd39-71e4-49eb-968a-1e10c5291bab">
+        <xs:annotation>
+            <xs:documentation>
+                Contains information about a revoked certificate.
+                Only applicable for subject roles SAM Admin, SAM Activator, UM Admin, Root CA or Sub CA certificates.
+                For these subject roles, there may only be one certificate per subject.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="subject" type="tns:Subject">
+                <xs:annotation>
+                    <xs:documentation>
+                        Subject of the revoked certificates.
+                        Since there is only one certificate for this subject, this information suffices
+                        to uniquely identify the certificate.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="revocationTime" type="tns:UnixTime">
+                <xs:annotation>
+                    <xs:documentation>
+                        Time of revocation.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CvCertificateRevocationList" id="_45c6eb4c-e447-449c-ac76-a133ee3a5089">
+        <xs:annotation>
+            <xs:documentation>
+                Certificate revocation list employed in terminals and back-office systems.
+                For example, assert each time a CV certificate is verified before a signature check of a static
+                entitlement (SAM) or an attestation (user medium) that none of the CV certificate of the
+                CA certificates in the certificate chain is not included in this list.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="cvCertificateRevocationList" type="tns:CvCertificateRevocationListEntry" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        0..* entries which contain revocation information about CV certificates of SAM Admin, SAM Activator, UM Admin, Root CA or Sub CA certificates.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="InternalError" id="_8db8da3d-1428-4490-b309-40cb26f795b7">
+        <xs:annotation>
+            <xs:documentation>
+                Contains information about an error defined within an organisational unit.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="code" type="tns:EventIdentifier">
+                <xs:annotation>
+                    <xs:documentation>
+                        Contains an internal code classifying the internal error.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="description" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Contains further descriptive information about the internal error.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EntitlementIssuingAbortedData" id="_0bd6917c-b34b-4728-8839-3057f3f68ea1">
+        <xs:annotation>
+            <xs:documentation>
+                Contains information needed to flag the corresponding SAM entitlement issuance counter and
+                product issuance counter as burnt.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/kvp-dl-pv/2">TXTRANSABBRUCH_Type</meta:name>
+                            <meta:deleted>
+                                <meta:name>logApplikationSeqNummer</meta:name>
+                                <meta:reason>obsolete</meta:reason>
+                            </meta:deleted>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="internalError" type="tns:InternalError">
+                <xs:annotation>
+                    <xs:documentation>
+                        Contains information about the problem leading to the issuance abortion.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="samId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        SAM application instance ID.
+                        This information is used by the terminal operator and the product owner to uniquely identify
+                        the instances of their respective counters.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:remarks>Previously, the information was part of logNmTransaktion_ID.</meta:remarks>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="entitlementIssuanceCounter" type="tns:EntitlementIssuanceCounter">
+                <xs:annotation>
+                    <xs:documentation>
+                        SAM entitlement issuance counter.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:remarks>Previously, the information was part of logNmTransaktion_ID.</meta:remarks>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="productOwnerToken" type="tns:ProductOwnerToken">
+                <xs:annotation>
+                    <xs:documentation>
+                        Product Owner Token information.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>MKAH-PV-NM-MAC_ID</meta:name>
+                                </meta:old>
+                                <meta:old>
+                                    <meta:name>MKAH-PV-Nutzungszaehler</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="terminalActionData" type="tns:TerminalActionData">
+                <xs:annotation>
+                    <xs:documentation>
+                        Terminal action data. Contains information about the used terminal (terminal ID),
+                        the time stamp and location information.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:remarks>Previously, the information was inlined.</meta:remarks>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        In case a User Medium was involved in the issuance, its app instance ID is contained here.
+                        This field is mandatory for entitlement issuances towards User Media and absent for static entitlement issuances.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ActionAbortedData" id="_2b0c8069-f2dd-4fa9-a90a-6631d31be684">
+        <xs:annotation>
+            <xs:documentation>
+                Contains information needed to flag the corresponding SAM action counter as burnt.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="internalError" type="tns:InternalError">
+                <xs:annotation>
+                    <xs:documentation>
+                        Contains information about the problem leading to the action abortion.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="samActionData" type="tns:SamActionData">
+                <xs:annotation>
+                    <xs:documentation>
+                        Contains information about the used SAM (SAM ID) and its current action counter.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="terminalActionData" type="tns:TerminalActionData">
+                <xs:annotation>
+                    <xs:documentation>
+                        Terminal action data. Contains information about the used terminal (terminal ID),
+                        the time stamp and location information.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        Contains the app instance ID of the User Medium involved in the action.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ATTESTATIONS -->
+
+
+    <xs:complexType name="SignedEntitlementIssuedAttestation" id="_06352ed3-86c4-423c-927f-3f4c81ec9261">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure of an attestation which documents that an entitlement has been issued authentically.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.EntitlementIssuedAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignedEntitlementTerminatedAttestation" id="_f8bb7136-0199-4878-921f-2f343d7ce510">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure of an attestation which documents the performed termination of an entitlement
+                authentically.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.EntitlementTerminatedAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignedEntitlementBlockedAttestation" id="_4602b57b-7006-4ba3-bc56-23b8b9cfa0b3">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure of an attestation which documents the blocking of an entitlement.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.EntitlementBlockedAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignedEntitlementUnblockedAttestation" id="_014eb8bb-157d-4694-9d60-d308b2357837">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure of an attestation which documents the performed unblocking of an entitlement
+                authentically.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.EntitlementUnblockedAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignedEntitlementInspectedAttestation" id="_d629c7e8-d7eb-4c99-b6ee-7310c62f9b9e">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure of an attestation which documents the performed inspection of an entitlement
+                authentically.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.EntitlementInspectedAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignedEntitlementValidatedAttestation" id="_19bbe039-a293-4280-9d43-e6c0d96d5a6e">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure of an attestation which documents the performed validation of an entitlement
+                authentically.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.EntitlementValidatedAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignedCheckinAttestation" id="_d5370848-7861-42f1-b21f-745df240eb78">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure of an attestation which documents the performed check-in with an entitlement authentically.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.CheckinAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignedCheckoutAttestation" id="_80763988-eef0-4074-9742-7d07858176b6">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure of an attestation which documents the performed check-out with an entitlement
+                authentically.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.CheckoutAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignedUserTariffParametersChangedAttestation"
+                    id="_168a3859-dcd3-4481-af0f-2359ed065777">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure of an attestation which documents the performed changing of user tariff
+                parameters authentically.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.UserTariffParametersChangedAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignedStoredValuePaymentMethodRechargedAttestation"
+                    id="_b557b1d1-35b9-46c0-8f75-ddc8c25cd838">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure of an attestation which documents performed recharging value to a stored value
+                entitlement authentically.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.StoredValuePaymentMethodRechargedAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignedStoredValuePaymentMethodReimbursedAttestation"
+                    id="_e6146d9c-ab57-4f7c-95f8-86627d62a4a3">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure of an attestation which documents the performed reimbursing of value from a stored value
+                entitlement authentically.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.StoredValuePaymentMethodReimbursedAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignedStoredValuePaymentMethodDebitedAttestation" id="_163e1250-bb5e-4d48-a7ff-e0e69e5f4551">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure of an attestation which documents the performed debit of a stored value entitlement
+                authentically.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.StoredValuePaymentMethodDebitedAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignedStoredValuePaymentMethodCreditedAttestation" id="_3b831606-7ce1-418b-920f-42368d270138">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure of an attestation which documents the performed credit of a stored value entitlement
+                authentically.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.StoredValuePaymentMethodCreditedAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignedAccountBasedPaymentMethodDebitedAttestation" id="_8673e237-b888-4715-824e-9475cccab65f">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure of an attestation which documents that an account (related to an account-based
+                entitlement) has to be debited with a certain value authentically.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.AccountBasedPaymentMethodDebitedAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignedAccountBasedPaymentMethodCreditedAttestation"
+                    id="_8cc1ab8f-2ec9-4836-a247-8ba15dc1fa13">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure of an attestation which documents that an account (related to an account-based
+                entitlement)
+                has to be credited with a certain value authentically.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.AccountBasedPaymentMethodCreditedAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignedApplicationBlockedAttestation" id="_9c840149-2b02-4987-8fa4-f8bc7f693e7f">
+        <xs:annotation>
+            <xs:documentation>Data type of an attestation which documents the blocking of an application of a user medium
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                            <meta:deleted>
+                                <meta:name>MK_PV</meta:name>
+                                <meta:reason>MAC replaced by UM Signature</meta:reason>
+                            </meta:deleted>
+                            <meta:deleted>
+                                <meta:name>MK_KVP</meta:name>
+                                <meta:reason>MAC replaced by UM Signature</meta:reason>
+                            </meta:deleted>
+                            <meta:deleted>
+                                <meta:name>MK_TR</meta:name>
+                                <meta:reason>MAC replaced by UM Signature</meta:reason>
+                            </meta:deleted>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.ApplicationBlockedAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignedApplicationUnblockedAttestation" id="_b359e717-4a77-4e2f-a6ae-a54691b87747">
+        <xs:annotation>
+            <xs:documentation>Data type of an attestation which documents the unblocking of an application of a user medium</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                            <meta:deleted>
+                                <meta:name>MK_PV</meta:name>
+                                <meta:reason>MAC replaced by UM Signature</meta:reason>
+                            </meta:deleted>
+                            <meta:deleted>
+                                <meta:name>MK_KVP</meta:name>
+                                <meta:reason>MAC replaced by UM Signature</meta:reason>
+                            </meta:deleted>
+                            <meta:deleted>
+                                <meta:name>MK_TR</meta:name>
+                                <meta:reason>MAC replaced by UM Signature</meta:reason>
+                            </meta:deleted>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.ApplicationUnblockedAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SignedApplicationTerminatedAttestation" id="_44622199-91e6-499a-991c-a46fcb79c359">
+        <xs:annotation>
+            <xs:documentation>Data type of an attestation which documents the termination of an application of a user medium</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Transaktionsdatensatz_Type</meta:name>
+                            <meta:deleted>
+                                <meta:name>MK_PV</meta:name>
+                                <meta:reason>MAC replaced by UM Signature</meta:reason>
+                            </meta:deleted>
+                            <meta:deleted>
+                                <meta:name>MK_KVP</meta:name>
+                                <meta:reason>MAC replaced by UM Signature</meta:reason>
+                            </meta:deleted>
+                            <meta:deleted>
+                                <meta:name>MK_TR</meta:name>
+                                <meta:reason>MAC replaced by UM Signature</meta:reason>
+                            </meta:deleted>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="specVersion" type="tns:SpecVersion">
+                <xs:annotation>
+                    <xs:documentation>Version information of the relevant UM Specification.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="binaryAttestationData" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The raw binary data of the terminal attestation in TLV format.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Transaktionsdaten</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-um.ApplicationTerminatedAttestation</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="signatureAlgorithmId" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>The ID of the algorithm in TLV format that was used by the user medium to sign the attestation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.SignatureAlgorithmId</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umSignature" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>
+                        The raw binary data of the signature in TLV format over the binary terminal attestation.
+                        The signature was created by the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>berNmTransaktionMAC</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/ion/2">berNmTransaktionMAC_Type</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-common.AttestationSignature</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="umAppInstanceId" type="tns:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The application instance ID of the user medium that signed the attestation. Can be used to
+                        retrieve the corresponding certificate for signature verification purposes (the application instance ID
+                        is the subject in the certificate).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Price" id="_e657ac2d-0e32-4734-bade-e620743e7435">
+        <xs:annotation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/kvp-dl-pv/2">TX_PP_Type</meta:name>
+                        </meta:old>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/kvp-dl-pv/2">TX_PP2_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="amountInclVat" type="xs:integer">
+                <xs:annotation>
+                    <xs:documentation>
+                        Amount which contains the vat
+                        with the precision of hundredths (two digits counted from right side)
+                        for the current currency (normally EUR).
+                        Example: 320 means 320 euro-cent or 3,20 EUR.
+                        May be negative.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>ppLeistungsPreis</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/kvp-dl-pv/2">Amount65535</meta:type>
+                                </meta:old>
+                                <meta:old>
+                                    <meta:name>ppLeistungsPreis2</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/kvp-dl-pv/2">Signed_INT3</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="vatRate" type="xs:integer">
+                <xs:annotation>
+                    <xs:documentation>
+                        Vat rate as integer with the precision of hundredths (two digits counted from right side).
+                        Example: 700 means 7,00%.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>ppMehrwertsteuer</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/common/types/2">INT2</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="MediumId" id="_58653f1e-1b01-4aab-bad1-35f13cb89fd4">
+        <xs:annotation>
+            <xs:documentation>
+                ID of a user medium. Not necessarily the application instance ID.
+                Normally printed outside on a chip card or similar.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/common/types/2">OctetString10</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+</xs:schema>

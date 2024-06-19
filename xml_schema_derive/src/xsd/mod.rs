@@ -16,3 +16,4 @@ mod sequence;
 mod simple_content;
 mod simple_type;
 mod union;
+mod r#enum;
