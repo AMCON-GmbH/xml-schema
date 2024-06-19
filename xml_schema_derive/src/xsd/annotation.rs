@@ -5,16 +5,16 @@ use crate::xsd::attribute::Attribute;
 prefix = "xs",
 namespace = "xs: http://www.w3.org/2001/XMLSchema")]
 pub struct Annotation {
-    #[yaserde(attribute)]
-    pub id: Option<String>,
-    #[yaserde(rename = "attribute")]
-    pub attributes: Vec<Attribute>,
-    #[yaserde(rename = "documentation"
+  #[yaserde(attribute)]
+  pub id: Option<String>,
+  #[yaserde(rename = "attribute")]
+  pub attributes: Vec<Attribute>,
+  #[yaserde(rename = "documentation"
     prefix = "xs",
     namespace = "xs: http://www.w3.org/2001/XMLSchema")]
-    pub documentation: Option<String>,
-    #[yaserde(rename = "appinfo")]
-    pub app_info: Option<AppInfo>,
+  pub documentation: Option<String>,
+  #[yaserde(rename = "appinfo")]
+  pub app_info: Option<AppInfo>,
 }
 
 #[derive(Clone, Default, Debug, PartialEq, YaDeserialize)]
@@ -22,8 +22,8 @@ pub struct Annotation {
 prefix = "xs",
 namespace = "xs: http://www.w3.org/2001/XMLSchema")]
 pub struct AppInfo {
-    #[yaserde(rename = "metaInfo")]
-    pub meta_info: Option<MetaInfo>,
+  #[yaserde(rename = "metaInfo")]
+  pub meta_info: Option<MetaInfo>,
 }
 
 #[derive(Clone, Default, Debug, PartialEq, YaDeserialize)]
@@ -31,8 +31,8 @@ pub struct AppInfo {
 prefix = "meta",
 namespace = "meta: urn:ets:metainfo")]
 pub struct MetaInfo {
-    #[yaserde(rename = "xml")]
-    pub xml: Option<Xml>,
+  #[yaserde(rename = "xml")]
+  pub xml: Option<Xml>,
 }
 
 #[derive(Clone, Default, Debug, PartialEq, YaDeserialize)]
@@ -40,12 +40,12 @@ pub struct MetaInfo {
 prefix = "meta",
 namespace = "meta: urn:ets:metainfo")]
 pub struct Xml {
-    #[yaserde(rename = "since"
+  #[yaserde(rename = "since"
     prefix = "meta",
     namespace = "meta: urn:ets:metainfo")]
-    pub since: Option<String>,
-    #[yaserde(rename = "old")]
-    pub old: Option<Old>
+  pub since: Option<String>,
+  #[yaserde(rename = "old")]
+  pub old: Option<Old>,
 }
 
 #[derive(Clone, Default, Debug, PartialEq, YaDeserialize)]
@@ -53,8 +53,8 @@ pub struct Xml {
 prefix = "meta",
 namespace = "meta: urn:ets:metainfo")]
 pub struct Old {
-    #[yaserde(rename = "name"
+  #[yaserde(rename = "name"
     prefix = "meta",
     namespace = "meta: urn:ets:metainfo")]
-    pub name: String,
+  pub name: String,
 }

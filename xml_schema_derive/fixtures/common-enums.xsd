@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema version="3.0.0-rc.3"
+           targetNamespace="https://eticore.org/common/3"
+           xmlns:tns="https://eticore.org/common/3"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:co="https://eticore.org/common/3"
+           xmlns:meta="urn:ets:metainfo"
+           elementFormDefault="qualified">
+
+    <xs:annotation>
+        <xs:documentation>
+            Schema which defines enumerations used in the environment of etiCORE.
+            These enumerations only have documentation purposes.
+            At least in Java, the JAXB compiler does not create Java enumerations from the XSD enumeration elements
+            if these elements does not base on strings or have numeric names.
+            As described in https://docs.oracle.com/javase/tutorial/jaxb/intro/custom.html, you can employ
+            additional binding files to help the JAXB compiler generating Java enum pattern.
+            Version 3.0.0-rc.3
+        </xs:documentation>
+    </xs:annotation>
+
+    <!-- for EnumMarker -->
+    <xs:include schemaLocation="../../../../org/eticore/common/3/common-generated.xsd"/>
+
+    <xs:simpleType name="StringEnumMarker" id="_b8483429-d357-43fb-bdf8-8eb783227546">
+        <xs:annotation>
+            <xs:documentation>
+                Base class for all string-based values that correspond to a decoupled enumeration of allowed values.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="64"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PartnerRoleCode" id="_a1f1405a-a683-4e29-adab-a1ca46862c30">
+        <xs:annotation>
+            <xs:documentation>
+                Defines the role of the organisation in electronic fare management (EFM).
+                No longer enumeration. See PartnerRoleEnum for semantic check purposes.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/common/2">KommunikationsParterRolle</meta:name>
+                            <meta:type xmlns="http://vdv/ka/common/types/2">INT1</meta:type>
+                        </meta:old>
+                    </meta:xml>
+                    <meta:remarks>Old location in XML-Schema_KA_Common.xsd</meta:remarks>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="co:EnumMarker">
+            <xs:maxInclusive value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PartnerRoleEnum" id="_119fef95-8689-45ef-b112-2937fa33fb05">
+        <xs:annotation>
+            <xs:documentation>
+                Role of the communication partner inside the electronic fare management (EFM).
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/common/2">KommunikationsParterRolle</meta:name>
+                            <meta:type xmlns="http://vdv/ka/common/types/2">INT1</meta:type>
+                        </meta:old>
+                    </meta:xml>
+                    <meta:spec>
+                        <meta:old>
+                            <meta:name>Rollen_CODE</meta:name>
+                            <meta:type>INT1</meta:type>
+                            <meta:deletedValue>
+                                <meta:value>31</meta:value>
+                                <meta:documentation>ALISE</meta:documentation>
+                                <meta:reason>now a service under PO</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>255</meta:value>
+                                <meta:documentation>Key_Organisation</meta:documentation>
+                            </meta:deletedValue>
+                        </meta:old>
+                    </meta:spec>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="tns:PartnerRoleCode">
+            <xs:enumeration value="0">
+                <xs:annotation>
+                    <xs:documentation>Unknown</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Unbekannt</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>keine Angabe</meta:documentation>
+                                </meta:oldValue>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>Customer Contract Partner CCP</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>KVP</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>KVP</meta:documentation>
+                                </meta:oldValue>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>Service Operator SO</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>DL</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>DL</meta:documentation>
+                                </meta:oldValue>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="3">
+                <xs:annotation>
+                    <xs:documentation>Product Owner PO</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>PV</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>PV</meta:documentation>
+                                </meta:oldValue>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="4">
+                <xs:annotation>
+                    <xs:documentation>Scheme Manager (including Application and Security Management ASM)</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>AH</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>AH</meta:documentation>
+                                </meta:oldValue>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="5">
+                <xs:annotation>
+                    <xs:documentation>Hotlist Service HL(S)</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>KOSES</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>KOSE</meta:documentation>
+                                </meta:oldValue>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="100">
+                <xs:annotation>
+                    <xs:documentation>Manufacturer</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="254">
+                <xs:annotation>
+                    <xs:documentation>Central Routing Engine CRE / Joint Service Broker JSB</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>ZVM</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Vermittlungsstelle</meta:documentation>
+                                </meta:oldValue>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="BlockingReasonCode" id="_b7cc44d2-a005-4688-996e-431b40361a9d">
+        <xs:annotation>
+            <xs:documentation>
+                Code that defines the reason for the blocking.
+                The semantic check has to be done in the primary CCP system.
+                See enumeration BlockReasonEnum.
+                See also EN 1545-1:2015: HotListStatusCode.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/kose/types/2">Sperrgrund_Type</meta:name>
+                            <meta:type xmlns="http://vdv/ka/common/types/2">INT1</meta:type>
+                        </meta:old>
+                    </meta:xml>
+                    <meta:spec>
+                        <meta:old>
+                            <meta:name>SperrlistenStatus_CODE</meta:name>
+                            <meta:type>INT1</meta:type>
+                        </meta:old>
+                    </meta:spec>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="co:EnumMarker"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="BlockingReasonEnum" id="_39945762-aa09-4e93-b8f1-94ce40b50f12">
+        <xs:annotation>
+            <xs:documentation>
+                Enumeration with valid blocking reasons. Only used for hotlisting demands. Not used in the hotlist system itself.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/kose/types/2">SperrgrundEnum_Type</meta:name>
+                            <meta:type xmlns="http://vdv/ka/kose/types/2">Sperrgrund_Type</meta:type>
+                            <meta:deletedValue>
+                                <meta:value>0</meta:value>
+                                <meta:documentation>KA: Not Specified (All) Keine Angabe</meta:documentation>
+                                <meta:reason>Consolidation due to CR-355</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>13</meta:value>
+                                <meta:documentation>KA: Payment delay (Entitlement) Zahlungsverzug (BER)</meta:documentation>
+                                <meta:reason>Consolidation due to CR-355</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>14</meta:value>
+                                <meta:documentation>KA: Certificate revocation (Application/SAM) Zertifikatsperre (NM/SAM)</meta:documentation>
+                                <meta:reason>Consolidation due to CR-355</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>16</meta:value>
+                                <meta:documentation>KA: Breach of participation contract (Company) Teilnahmevertrag nicht eingehalten (ORG)</meta:documentation>
+                                <meta:reason>Consolidation due to CR-355</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>17</meta:value>
+                                <meta:documentation>KA: Employment of non-certified components (Company) nicht zertifizierte Komponenten eingesetzt (ORG)</meta:documentation>
+                                <meta:reason>Consolidation due to CR-355</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>18</meta:value>
+                                <meta:documentation>KA: Breach of payment conditions (Company) Zahlungsverpflichtungen nicht eingehalten (ORG)</meta:documentation>
+                                <meta:reason>Consolidation due to CR-355</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>19</meta:value>
+                                <meta:documentation>KA: Offense against ION rules (Company) Fehlverhalten im ION (ORG)</meta:documentation>
+                                <meta:reason>Consolidation due to CR-355</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>20</meta:value>
+                                <meta:documentation>
+                                    KA: Inconsistent messages of ION participant (Company)
+                                    Transaktionen, die von einem Teilnehmer eingereicht werden, weisen Unregelmäßigkeiten auf
+                                </meta:documentation>
+                                <meta:reason>Consolidation due to CR-355</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>21</meta:value>
+                                <meta:documentation>KA: Contract termination (Company) Kündigung von Verträgen (ORG)</meta:documentation>
+                                <meta:reason>Consolidation due to CR-355</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>23</meta:value>
+                                <meta:documentation>KA: Company ID no longer supported (Company) Organisation obsolet (ORG)</meta:documentation>
+                                <meta:reason>Consolidation due to CR-355</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>24</meta:value>
+                                <meta:documentation>KA: Compromised / abused key (Key) Kompromittierung/ Missbrauch eines Schlüssels/eines Zertifikates(Key)</meta:documentation>
+                                <meta:reason>Consolidation due to CR-355</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>26</meta:value>
+                                <meta:documentation>
+                                    KA: Referenced product was deactivated (Entitlement)
+                                    Produkt war bereits deaktiviert (BER)
+                                    (Die Deaktivierung des Produktes wurde nicht rechtzeitig am Terminal vollzogen.)
+                                </meta:documentation>
+                                <meta:reason>Consolidation due to CR-355</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>27</meta:value>
+                                <meta:documentation>
+                                    KA: Application or entitlement with the same ID already exists (Application/Entitlement)
+                                    Objekt bereits vorhanden (APP(BER) (z.B. BER wurde fälschlicherweise mehrfach ausgegeben.)
+                                </meta:documentation>
+                                <meta:reason>Consolidation due to CR-355</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>30</meta:value>
+                                <meta:documentation>
+                                    KA: Usermedium/application which contains entitlements of a secondary customer contract partner (CCP) was replaced (Application/Entitlement)
+                                    Berechtigungen eines Fremd-KVP (APP/BER) (Verwendung erst ab Version 3.0.0 zulässig.)
+                                </meta:documentation>
+                                <meta:reason>Consolidation due to CR-355</meta:reason>
+                            </meta:deletedValue>
+                        </meta:old>
+                    </meta:xml>
+                    <meta:spec>
+                        <meta:old>
+                            <meta:name>SperrlistenStatus_CODE</meta:name>
+                            <meta:type>INT1</meta:type>
+                        </meta:old>
+                    </meta:spec>
+                </meta:metaInfo>
+            </xs:appinfo>
+            <xs:documentation>
+                Enumeration: Codes which defines the reason of the blocking. See also BlockingReasonCode.
+                See also EN 1545-1:2015: HotListStatusCode.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="tns:BlockingReasonCode">
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>EN 1545: Further</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>EN 1545: Undefined (All)</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>undefiniert</meta:documentation>
+                                </meta:oldValue>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>EN 1545: Stolen (Application/Usermedium/SAM)</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>EN 1545: Stolen (Application/Usermedium/SAM)</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>gestohlen (NM/APP/SAM)</meta:documentation>
+                                </meta:oldValue>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="3">
+                <xs:annotation>
+                    <xs:documentation>EN 1545: Lost (Application/Usermedium/SAM)</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>EN 1545: Lost (Application/Usermedium/SAM)</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>verloren (NM/APP/SAM)</meta:documentation>
+                                </meta:oldValue>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="6">
+                <xs:annotation>
+                    <xs:documentation>EN 1545: Monitoring (Application/Usermedium/SAM)</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="15">
+                <xs:annotation>
+                    <xs:documentation>etiCORE: Offence against terms of carriage (Application/Entitlement)</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>KA: Offence against terms of carriage (Application/Entitlement)</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Verstoß gegen die Beförderungsbedingungen (BER/APP)</meta:documentation>
+                                </meta:oldValue>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="22">
+                <xs:annotation>
+                    <xs:documentation>etiCORE: Defect usermedium (Application/Usermedium)</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>KA: Defect usermedium (Application/Usermedium)</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Defektes Medium (NM/APP)</meta:documentation>
+                                </meta:oldValue>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="25">
+                <xs:annotation>
+                    <xs:documentation>etiCORE: Application not returned after contract termination (Application)</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>KA: Application not returned after contract termination (Application)</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>APP (NM) nach Vertragsende/ Verträgsänderung nicht zurückgegeben (APP)</meta:documentation>
+                                </meta:oldValue>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="31">
+                <xs:annotation>
+                    <xs:documentation>etiCORE: Static entitlement terminated.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="HotlistingDemandResultCode" id="_3e2816f7-f404-42d0-b544-90d71704b88d">
+        <xs:annotation>
+            <xs:documentation>
+                Code for a notification as response of a hotlisting request.
+                See HotlistingDemandResultEnum for enumeration.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="co:EnumMarker"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="HotlistingDemandResultEnum" id="_c3157b6a-3e65-442e-af65-d9b72ecd7851">
+        <xs:annotation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">Mitteilung_CODE_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                    <meta:spec>
+                        <meta:old>
+                            <meta:name>Mitteilung_CODE</meta:name>
+                            <meta:deletedValue>
+                                <meta:value>2</meta:value>
+                                <meta:documentation>akzeptiert, Sperrauftrag/Sperrfreigabeauftrag für Objekt bereits erteilt</meta:documentation>
+                                <meta:reason>hotlisting state not exposed any more</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>4</meta:value>
+                                <meta:documentation>nicht akzeptiert, Sperrauftrag/Sperrfreigabeauftrag für Objekt bereits erteilt</meta:documentation>
+                                <meta:reason>hotlisting state not exposed any more</meta:reason>
+                            </meta:deletedValue>
+                        </meta:old>
+                    </meta:spec>
+                </meta:metaInfo>
+            </xs:appinfo>
+            <xs:documentation>
+                Code enumeration of possible responses for a previous hotlisting demand.
+                See also HotlistingDemandResultCode.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="tns:HotlistingDemandResultCode">
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Accepted (if block reason can be dropped on requestor's side, the entity owner expects an
+                        hotlisting demand revocation with the same reason code).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation/>
+                                </meta:oldValue>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>akzeptiert (Sperrgrund akzeptiert, Sperranforderung wird angenommen.
+                                        Vom Anforderer wird bei Entfall des Sperrgrundes in seinem System eine Aufhebungs-
+                                        (Freigabe-)anforderung erwartet.)
+                                    </meta:documentation>
+                                </meta:oldValue>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="3">
+                <xs:annotation>
+                    <xs:documentation>
+                        Not accepted (no further action from the requesting system expected).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation/>
+                                </meta:oldValue>
+                            </meta:xml>
+                            <meta:spec>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>nicht akzeptiert (Sperrgrund nicht akzeptiert, Sperranforderung
+                                        wird abgelehnt. Vom Anforderer wird keine mehr erwartet; er kann den Vorgang in
+                                        seinem System abschließen.)
+                                    </meta:documentation>
+                                </meta:oldValue>
+                            </meta:spec>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

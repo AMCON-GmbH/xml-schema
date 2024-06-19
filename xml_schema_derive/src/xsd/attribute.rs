@@ -1,6 +1,4 @@
-use crate::xsd::{
-  simple_type::SimpleType,
-};
+use crate::xsd::simple_type::SimpleType;
 
 #[derive(Clone, Default, Debug, PartialEq, YaDeserialize)]
 #[yaserde(
