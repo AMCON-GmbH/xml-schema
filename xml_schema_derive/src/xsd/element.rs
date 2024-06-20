@@ -9,7 +9,7 @@ pub struct Element {
   #[yaserde(attribute)]
   pub name: Option<String>,
   #[yaserde(rename = "type", attribute)]
-  pub kind: Option<String>,
+  pub r#type: Option<String>,
   #[yaserde(rename = "ref", attribute)]
   pub refers: Option<String>,
   #[yaserde(rename = "minOccurs", attribute)]
