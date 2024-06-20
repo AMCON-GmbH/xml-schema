@@ -45,7 +45,7 @@ pub struct Xml {
     namespace = "meta: urn:ets:metainfo")]
   pub since: Option<String>,
   #[yaserde(rename = "old")]
-  pub old: Option<Old>,
+  pub old: Vec<Old>,
 }
 
 #[derive(Clone, Default, Debug, PartialEq, YaDeserialize)]
