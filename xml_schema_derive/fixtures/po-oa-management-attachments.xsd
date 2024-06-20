@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="3.0.0-rc.3"
+           targetNamespace="https://eticore.org/po-oa-management/attachments/3"
+           xmlns:tns="https://eticore.org/po-oa-management/attachments/3"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:co="https://eticore.org/common/3"
+           xmlns:po-oa-management="https://eticore.org/po-oa-management/3"
+           xmlns:meta="urn:ets:metainfo"
+           elementFormDefault="qualified">
+
+    <xs:annotation>
+        <xs:documentation>
+            Contains all data structures which are needed to validate the base64-encoded and packed attachments
+            (if they retain their XML format after decoding and unzipping).
+            These attachments contain lists, the structures of which are defined in this schema.
+            Version 3.0.0-rc.3
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:import namespace="https://eticore.org/common/3" schemaLocation="../../../../../org/eticore/common/3/common.xsd"/>
+    <xs:import namespace="https://eticore.org/po-oa-management/3" schemaLocation="../../../../../org/eticore/po-oa-management/3/po-oa-management.xsd"/>
+
+    <xs:complexType name="ActionList" id="_da123fb9-d152-4f48-b1cb-a3e6caac0616">
+        <xs:annotation>
+            <xs:documentation>Action list consisting of the list cycle and the action list entries</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/alise/attachments/2">TXAML_Data_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="listCycle" type="co:ListCycle">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>amListeNummer</meta:name>
+                                </meta:old>
+                                <meta:old>
+                                    <meta:name>amListeZeitstempel</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="entitlementIssuanceActionListEntry" type="po-oa-management:EntitlementIssuanceActionListEntry">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Action list entry for an entitlement issuance.
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <meta:metaInfo>
+                                <meta:xml>
+                                    <meta:old>
+                                        <meta:name>txalisber</meta:name>
+                                    </meta:old>
+                                </meta:xml>
+                            </meta:metaInfo>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="entitlementTerminationActionListEntry" type="po-oa-management:EntitlementTerminationActionListEntry">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Action list entry for an entitlement termination.
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <meta:metaInfo>
+                                <meta:xml>
+                                    <meta:old>
+                                        <meta:name>txrlisber</meta:name>
+                                    </meta:old>
+                                </meta:xml>
+                            </meta:metaInfo>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="entitlementUnblockingActionListEntry" type="po-oa-management:EntitlementUnblockingActionListEntry">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Action list entry for an entitlement unblocking.
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <meta:metaInfo>
+                                <meta:xml>
+                                    <meta:old>
+                                        <meta:name>txelisber</meta:name>
+                                    </meta:old>
+                                </meta:xml>
+                            </meta:metaInfo>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="entitlementBlockingActionListEntry" type="po-oa-management:EntitlementBlockingActionListEntry">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Action list entry for an entitlement blocking.
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <meta:metaInfo>
+                                <meta:xml>
+                                    <meta:since>3.0.0</meta:since>
+                                </meta:xml>
+                            </meta:metaInfo>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="actionList" type="tns:ActionList" id="_76500bee-f5e3-40f2-9782-58f683102597">
+        <xs:annotation>
+            <xs:documentation>Action list consisting of the list cycle and the action list entries</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/alise/attachments/2">TXAMLData</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:complexType name="IncrementalActionList" id="_525d7f61-345f-4850-a20e-8bb1de63f29d">
+        <xs:annotation>
+            <xs:documentation>Incremental action list consisting of the changes regarding the action list entries between given list cycles</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/alise/attachments/2">TXAMDL_Data_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="incrementalListCycleInformation" type="co:IncrementalListCycleInformation">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>amListeNummer</meta:name>
+                                </meta:old>
+                                <meta:old>
+                                    <meta:name>amListeZeitstempel</meta:name>
+                                </meta:old>
+                                <meta:old>
+                                    <meta:name>amListePruefsumme</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="entitlementIssuanceActionListEntry" type="po-oa-management:EntitlementIssuanceActionListEntry">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Action list entry for an entitlement issuance.
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <meta:metaInfo>
+                                <meta:xml>
+                                    <meta:old>
+                                        <meta:name>txalisber</meta:name>
+                                    </meta:old>
+                                </meta:xml>
+                            </meta:metaInfo>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="entitlementTerminationActionListEntry" type="po-oa-management:EntitlementTerminationActionListEntry">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Action list entry for an entitlement termination.
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <meta:metaInfo>
+                                <meta:xml>
+                                    <meta:old>
+                                        <meta:name>txrlisber</meta:name>
+                                    </meta:old>
+                                </meta:xml>
+                            </meta:metaInfo>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="entitlementUnblockingActionListEntry" type="po-oa-management:EntitlementUnblockingActionListEntry">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Action list entry for an entitlement unblocking.
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <meta:metaInfo>
+                                <meta:xml>
+                                    <meta:old>
+                                        <meta:name>txelisber</meta:name>
+                                    </meta:old>
+                                </meta:xml>
+                            </meta:metaInfo>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="entitlementBlockingActionListEntry" type="po-oa-management:EntitlementBlockingActionListEntry">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Action list entry for an entitlement blocking.
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <meta:metaInfo>
+                                <meta:xml>
+                                    <meta:since>3.0.0</meta:since>
+                                </meta:xml>
+                            </meta:metaInfo>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="removeOrder" type="po-oa-management:OrderId">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Indicates that the corresponding action list entry has been removed from the action list.
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <meta:metaInfo>
+                                <meta:xml>
+                                    <meta:old>
+                                        <meta:name>txllisber</meta:name>
+                                    </meta:old>
+                                </meta:xml>
+                            </meta:metaInfo>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="incrementalActionList" type="tns:IncrementalActionList" id="_5f8011c1-ae62-4af1-a8af-4ec62dda9b98">
+        <xs:annotation>
+            <xs:documentation>Incremental action list consisting of the list cycle and the changes regarding the action list entries</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/alise/attachments/2">TXAMDLData</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+
+</xs:schema>

@@ -35,7 +35,7 @@ pub struct ComplexType {
 /// That is because isolated ComplexTypes do not exist and namespaces can only be checked in the context of a Schema.
 #[cfg(test)]
 mod tests {
-  use crate::xsd::annotation::Annotation;
+  use crate::xsd::annotation::{Annotation, AppInfo, MetaInfo, Old, Xml};
   use crate::xsd::choice::Choice;
   use crate::xsd::complex_type::ComplexType;
   use crate::xsd::element::Element;
@@ -43,6 +43,7 @@ mod tests {
   use crate::xsd::sequence::Sequence;
   use std::fs;
 
+  use crate::xsd::max_occurences::MaxOccurences;
   use pretty_assertions::assert_eq;
 
   fn get_complex_type<'a>(schema: &'a Schema, type_name: &str) -> &'a ComplexType {
@@ -165,5 +166,84 @@ mod tests {
     );
   }
 
-  // TODO test with sequence of elements and choices (po-oa-management-attachments.IncrementalActionList)
+  #[test]
+  fn de_with_sequence_of_elements_and_choices() {
+    // given
+    let xsd = fs::read_to_string("fixtures/po-oa-management-attachments.xsd").unwrap();
+
+    // when
+    let schema: Schema = yaserde::de::from_str(xsd.as_str()).unwrap();
+
+    // then
+    let action_list = get_complex_type(&schema, "IncrementalActionList");
+
+    assert_eq!(
+      action_list.sequence,
+      Some(Sequence {
+        elements: vec![Element {
+          name: Some(String::from("incrementalListCycleInformation")),
+          r#type: Some(String::from("co:IncrementalListCycleInformation")),
+          ..std::default::Default::default()
+        }],
+        choices: vec![Choice {
+          elements: vec![
+            Element {
+              name: Some(String::from("entitlementIssuanceActionListEntry")),
+              r#type: Some(String::from(
+                "po-oa-management:EntitlementIssuanceActionListEntry"
+              )),
+              ..Default::default()
+            },
+            Element {
+              name: Some(String::from("entitlementTerminationActionListEntry")),
+              r#type: Some(String::from(
+                "po-oa-management:EntitlementTerminationActionListEntry"
+              )),
+              annotation: Some(Annotation {
+                id: None,
+                attributes: vec![],
+                documentation: Some(String::from(
+                  "Action list entry for an entitlement issuance."
+                ),),
+                app_info: Some(AppInfo {
+                  meta_info: Some(MetaInfo {
+                    xml: Some(Xml {
+                      old: vec![Old {
+                        name: String::from("txalisber"),
+                      },],
+                    },),
+                    binary: None,
+                  },),
+                },),
+              },),
+
+              ..Default::default()
+            },
+            Element {
+              name: Some(String::from("entitlementUnblockingActionListEntry")),
+              r#type: Some(String::from(
+                "po-oa-management:EntitlementUnblockingActionListEntry"
+              )),
+              ..Default::default()
+            },
+            Element {
+              name: Some(String::from("entitlementBlockingActionListEntry")),
+              r#type: Some(String::from(
+                "po-oa-management:EntitlementBlockingActionListEntry"
+              )),
+              ..Default::default()
+            },
+            Element {
+              name: Some(String::from("removeOrder")),
+              r#type: Some(String::from("po-oa-management:OrderId")),
+              ..Default::default()
+            },
+          ],
+          annotation: None,
+          min_occurences: Some(0),
+          max_occurences: Some(MaxOccurences::Unbounded),
+        }],
+      })
+    );
+  }
 }

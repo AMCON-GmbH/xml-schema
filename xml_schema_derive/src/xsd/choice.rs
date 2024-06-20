@@ -9,8 +9,6 @@ use crate::xsd::max_occurences::MaxOccurences;
   namespace = "xs: http://www.w3.org/2001/XMLSchema"
 )]
 pub struct Choice {
-  #[yaserde(attribute)]
-  pub name: Option<String>,
   #[yaserde(rename = "element")]
   pub elements: Vec<Element>,
   #[yaserde(rename = "annotation")]
