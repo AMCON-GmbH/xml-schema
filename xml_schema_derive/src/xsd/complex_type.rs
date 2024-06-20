@@ -55,7 +55,7 @@ mod tests {
   }
 
   #[test]
-  fn de_with_sequence_of_elements() {
+  fn de_type_with_sequence_of_elements_should_be_parsed_correctly() {
     // given
     let xsd = fs::read_to_string("fixtures/common.xsd").unwrap();
 
@@ -100,7 +100,7 @@ mod tests {
   }
 
   #[test]
-  fn de_is_abstract_is_correctly_parsed() {
+  fn de_abstract_type_should_be_parsed_correctly() {
     // given
     let xsd = fs::read_to_string("fixtures/ion.xsd").unwrap();
 
@@ -114,7 +114,7 @@ mod tests {
   }
 
   #[test]
-  fn de_asn1tag_is_correctly_parsed() {
+  fn de_type_with_asn1tag_should_be_parsed_correctly() {
     // given
     let xsd = fs::read_to_string("fixtures/sam-generated.xsd").unwrap();
 
@@ -131,7 +131,7 @@ mod tests {
   }
 
   #[test]
-  fn de_with_choice() {
+  fn de_type_with_choice_should_be_parsed_correctly() {
     // given
     let xsd = fs::read_to_string("fixtures/terminal.xsd").unwrap();
 
@@ -167,7 +167,7 @@ mod tests {
   }
 
   #[test]
-  fn de_with_sequence_of_elements_and_choices() {
+  fn de_type_with_sequence_of_elements_and_choices_should_be_parsed_correctly() {
     // given
     let xsd = fs::read_to_string("fixtures/po-oa-management-attachments.xsd").unwrap();
 

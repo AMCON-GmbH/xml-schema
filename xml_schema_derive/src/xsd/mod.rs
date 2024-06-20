@@ -4,7 +4,6 @@ mod attribute_group;
 mod complex_content;
 mod complex_type;
 mod element;
-mod r#enum;
 mod extension;
 mod group;
 mod import;

@@ -119,7 +119,7 @@ pub(crate) mod tests {
 
   //region tests
   #[test]
-  fn de_blocking_reason_text() {
+  fn de_type_with_max_length_restriction_should_be_parsed_correctly() {
     // given
     let xsd = fs::read_to_string("fixtures/common.xsd").unwrap();
 
@@ -149,7 +149,7 @@ pub(crate) mod tests {
   }
 
   #[test]
-  fn de_list_cycle_number_with_multiline_documentation() {
+  fn de_type_with_multiline_documentation_should_be_parsed_correctly() {
     // given
     let xsd = fs::read_to_string("fixtures/common.xsd").unwrap();
 
@@ -184,7 +184,7 @@ pub(crate) mod tests {
   }
 
   #[test]
-  fn de_zoned_datetime() {
+  fn de_type_with_pattern_restriction_should_be_parsed_correctly() {
     // given
     let xsd = fs::read_to_string("fixtures/common.xsd").unwrap();
 
@@ -217,7 +217,7 @@ pub(crate) mod tests {
   }
 
   #[test]
-  fn de_int_enum() {
+  fn de_int_enum_should_be_parsed_correctly() {
     // given
     let xsd = fs::read_to_string("fixtures/common-enums.xsd").unwrap();
 
@@ -256,7 +256,7 @@ pub(crate) mod tests {
   }
 
   #[test]
-  fn de_string_enum() {
+  fn de_string_enum_should_be_parsed_correctly() {
     // given
     let xsd = fs::read_to_string("fixtures/hotlist-enums.xsd").unwrap();
 
