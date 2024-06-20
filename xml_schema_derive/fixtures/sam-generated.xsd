@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:meta="urn:ets:metainfo" xmlns:sam="https://eticore.org/common/3" elementFormDefault="qualified" targetNamespace="https://eticore.org/common/3" version="3.0.0-rc.3">
+    <xs:include schemaLocation="../../../../org/eticore/common/3/common-generated.xsd"/>
+    <xs:include schemaLocation="../../../../org/eticore/common/3/cv-certificates-generated.xsd"/>
+    <xs:complexType id="_8e686fa5-e926-4a0b-82c0-b12082f02695" name="SigningPrivateKey">
+        <xs:annotation>
+            <xs:documentation>Contains the private key parameters corresponding to the SigningPublicKey.</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                    <meta:binary>
+                        <meta:since>3.0.0</meta:since>
+                        <meta:asn1tag>0x7F6D</meta:asn1tag>
+                    </meta:binary>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="privateKeyParameters" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>Contains the parameters of a private key.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:binary>
+                                <meta:asn1tag>0x7F6F</meta:asn1tag>
+                                <meta:asn1contentOfType>Org-eticore-common.PrivateKeyParameters</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType id="_948786ef-2052-4355-a318-29b8065c7121" name="ProductIssuanceCounter">
+        <xs:annotation>
+            <xs:documentation>Data type for a sequence number that is increased by one every time a SAM authorises the issuance of a (static) entitlement corresponding to the organisation this counter is for.</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                    <meta:binary>
+                        <meta:since>3.0.0</meta:since>
+                        <meta:asn1tag>0x46</meta:asn1tag>
+                    </meta:binary>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+    <xs:complexType id="_63903214-09f1-4c81-95c7-5962f5ef79c2" name="SigningPublicKey">
+        <xs:annotation>
+            <xs:documentation>Contains the public key parameters of the (unique) key pair associated with the SAM for the purpose of issuing signatures on static entitlements via the command AUTHORISE_STATIC_ENTITLEMENT, as well as the SignatureAlgorithmID of the signature algorithm in which the corresponding private key may be used.</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                    <meta:binary>
+                        <meta:old>
+                            <meta:name>CERT_SIG</meta:name>
+                            <meta:notag/>
+                        </meta:old>
+                        <meta:asn1tag>0x7F22</meta:asn1tag>
+                    </meta:binary>
+                    <meta:remarks>Only contains the public key, the certificate is stored in CertificateRepository</meta:remarks>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="algorithmId" type="sam:SignatureAlgorithmId">
+                <xs:annotation>
+                    <xs:documentation>OID of the permitted signature algorithm.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:binary>
+                                <meta:since>3.0.0</meta:since>
+                                <meta:asn1tag>0x06</meta:asn1tag>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="publicKeyParameters" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>Public key and domain parameters.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:binary>
+                                <meta:since>3.0.0</meta:since>
+                                <meta:asn1tag>0x7F49</meta:asn1tag>
+                                <meta:asn1contentOfType>Org-eticore-cvCertificates.PublicKeyParameters</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType id="_28cd6e5f-072a-43d0-9102-6e96a82d1e10" name="PublicKeyWithReference">
+        <xs:annotation>
+            <xs:documentation>Contains a key reference together with the corresponding public key and domain parameters.</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                    <meta:binary>
+                        <meta:since>3.0.0</meta:since>
+                        <meta:asn1tag>0x7F31</meta:asn1tag>
+                    </meta:binary>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="keyReference" type="sam:KeyReference">
+                <xs:annotation>
+                    <xs:documentation>Key reference.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:binary>
+                                <meta:asn1tag>0x53</meta:asn1tag>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="publicKeyParameters" type="xs:hexBinary">
+                <xs:annotation>
+                    <xs:documentation>Public key and domain parameters.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:binary>
+                                <meta:asn1tag>0x7F49</meta:asn1tag>
+                                <meta:asn1contentOfType>Org-eticore-cvCertificates.PublicKeyParameters</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType id="_4cf53777-25f7-4be4-91d8-c9788d421352" name="ProductOwnerToken">
+        <xs:annotation>
+            <xs:documentation>Indicates that the SAM may issue products for the contained organisation. Also contains a sequence number for the number of issuances already authorised for products of this organisation.</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                    <meta:binary>
+                        <meta:old>
+                            <meta:name>MK_PV</meta:name>
+                            <meta:notag/>
+                            <meta:deleted>
+                                <meta:name>Nutzungs-Limit</meta:name>
+                                <meta:reason>obsolete, never used in practice</meta:reason>
+                            </meta:deleted>
+                        </meta:old>
+                        <meta:asn1tag>0x70</meta:asn1tag>
+                    </meta:binary>
+                    <meta:remarks>Only covers parts of the semantics of MK_PV, since e.g. no entitlement keys are derived any more</meta:remarks>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="productOwnerOrgId" type="sam:OrganisationId">
+                <xs:annotation>
+                    <xs:documentation>The Organisation Identifier of a Product Owner for which the SAM has been granted the right to issue products.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:binary>
+                                <meta:old>
+                                    <meta:name>Schlüsselname des Masterkeys / des Schlüssels</meta:name>
+                                </meta:old>
+                                <meta:asn1tag>0x4D</meta:asn1tag>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="productIssuanceCounter" type="sam:ProductIssuanceCounter">
+                <xs:annotation>
+                    <xs:documentation>Sequence number that is increased by one every time a SAM authorises the issuance of a (static) entitlement corresponding to the product this counter is for.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:binary>
+                                <meta:old>
+                                    <meta:name>Nutzungs-Sequenz-Zähler</meta:name>
+                                </meta:old>
+                                <meta:asn1tag>0x46</meta:asn1tag>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType id="_0f6d5ac0-73b1-4312-95a0-091642f47bb5" name="ConfigurationAuthorisation">
+        <xs:annotation>
+            <xs:documentation>Contains one or more data objects, each describing a specific SubjectAuthorisation that the SAM will accept for configuration.</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                    <meta:binary>
+                        <meta:since>3.0.0</meta:since>
+                        <meta:asn1tag>0x7F27</meta:asn1tag>
+                    </meta:binary>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="configurationAuthorisation" type="sam:SubjectAuthorisation">
+                <xs:annotation>
+                    <xs:documentation>Describes a specific SubjectAuthorisation that the SAM will accept for configuration.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:binary>
+                                <meta:asn1tag>0x7F4C</meta:asn1tag>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType id="_2284c8d1-8d0a-4220-b6a5-67f6ab803bdf" name="SamActivationRights">
+        <xs:annotation>
+            <xs:documentation>Contains one or more data objects, each describing a specific SubjectAuthorisation that the SAM will accept for activation.</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                    <meta:binary>
+                        <meta:old>
+                            <meta:name>Betreiber-Aktivierungsschlüssel-ID</meta:name>
+                            <meta:notag/>
+                        </meta:old>
+                        <meta:asn1tag>0x7F28</meta:asn1tag>
+                    </meta:binary>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="subjectAuthorisation" type="sam:SubjectAuthorisation">
+                <xs:annotation>
+                    <xs:documentation>Describes a specific SubjectAuthorisation that the SAM will accept for activation.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:binary>
+                                <meta:old>
+                                    <meta:name>Betreiber-Aktivierungsschlüssel-ID</meta:name>
+                                    <meta:notag/>
+                                </meta:old>
+                                <meta:asn1tag>0x7F4C</meta:asn1tag>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType id="_69111b70-69b2-4f1a-8931-a178d080341b" name="ProductIssuanceRights">
+        <xs:annotation>
+            <xs:documentation>Contains the product owner tokens configured for this SAM. Indicates which organisations the SAM has product issuance rights for. Also contains information about the number of authorised issuances per organisation corresponding to the issued product.</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                    <meta:binary>
+                        <meta:old>
+                            <meta:name>Schlüssel-Info</meta:name>
+                        </meta:old>
+                        <meta:asn1tag>0x7F29</meta:asn1tag>
+                    </meta:binary>
+                    <meta:remarks>Only covers parts of the semantics of Schlüssel-Info, since e.g. no entitlement keys are derived any more</meta:remarks>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="productOwnerToken" type="sam:ProductOwnerToken">
+                <xs:annotation>
+                    <xs:documentation>Indicates that the SAM may issue products for the contained organisation. Also contains a sequence number for the number of issuances already made</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:binary>
+                                <meta:old>
+                                    <meta:name>MK_PV</meta:name>
+                                </meta:old>
+                                <meta:asn1tag>0x70</meta:asn1tag>
+                            </meta:binary>
+                            <meta:remarks>Only covers parts of the semantics of MK_PV, since e.g. no entitlement keys are derived any more</meta:remarks>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType id="_4dacde0b-c01f-41c6-81a0-8ce645d767a9" name="SamProprietaryData">
+        <xs:annotation>
+            <xs:documentation>Contains the data object AppVersion.</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                    <meta:binary>
+                        <meta:old>
+                            <meta:name>proprietäre Informationen</meta:name>
+                            <meta:notag/>
+                        </meta:old>
+                        <meta:asn1tag>0xA5</meta:asn1tag>
+                    </meta:binary>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="appVersion" type="sam:AppVersion">
+                <xs:annotation>
+                    <xs:documentation>Version of the application.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:binary>
+                                <meta:old>
+                                    <meta:name>SAM-Versionsinformation</meta:name>
+                                    <meta:tag>0x80</meta:tag>
+                                </meta:old>
+                                <meta:asn1tag>0x61</meta:asn1tag>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType id="_98e25e64-edb7-46b7-8849-f1e6d74b1d7d" name="KeyEstablishmentPublicKeys">
+        <xs:annotation>
+            <xs:documentation>Contains one or more PublicKeyWithReference data objects regarding the key pairs associated with the SAM for the purpose of key establishment with other components and entities via the command COMPUTE_SESSIONKEYS.</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                    <meta:binary>
+                        <meta:old>
+                            <meta:name>CERT_AUTH</meta:name>
+                            <meta:notag/>
+                        </meta:old>
+                        <meta:asn1tag>0x7F32</meta:asn1tag>
+                    </meta:binary>
+                    <meta:remarks>Only contains the public key and reference, the certificate is stored in CertificateRepository</meta:remarks>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="keyEstablishmentPublicKey" type="sam:PublicKeyWithReference">
+                <xs:annotation>
+                    <xs:documentation>Contains information about one of the key pairs associated with the SAM for the purpose of key establishment with other components and entities via the command COMPUTE_SESSIONKEYS.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:binary>
+                                <meta:since>3.0.0</meta:since>
+                                <meta:asn1tag>0x7F31</meta:asn1tag>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType id="_f0a627d2-35be-46b8-ac6d-3457973be8a4" name="SamFci">
+        <xs:annotation>
+            <xs:documentation>File Control Information of the SAM.</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                    <meta:binary>
+                        <meta:old>
+                            <meta:name>FCI</meta:name>
+                            <meta:sametag/>
+                        </meta:old>
+                        <meta:asn1tag>0x6F</meta:asn1tag>
+                    </meta:binary>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="aid" type="sam:Aid">
+                <xs:annotation>
+                    <xs:documentation>Registered application identifier value for the SAM Application.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:binary>
+                                <meta:old>
+                                    <meta:name>DF-Name</meta:name>
+                                    <meta:sametag/>
+                                </meta:old>
+                                <meta:asn1tag>0x84</meta:asn1tag>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="proprietaryData" type="sam:SamProprietaryData">
+                <xs:annotation>
+                    <xs:documentation>Proprietary data containing the data object AppVersion.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:binary>
+                                <meta:old>
+                                    <meta:name>Proprietäre Informationen</meta:name>
+                                    <meta:sametag/>
+                                </meta:old>
+                                <meta:asn1tag>0xA5</meta:asn1tag>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType id="_66c59d6c-aff9-4174-9582-15e3d575c3de" name="CertificateRepository">
+        <xs:annotation>
+            <xs:documentation>Contains certificates that are relevant for other entities in communicating with the SAM. Storing these in the SAM is intended to ease the portability of the SAM.</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                    <meta:binary>
+                        <meta:old>
+                            <meta:name>CERT_AUTH</meta:name>
+                            <meta:notag/>
+                        </meta:old>
+                        <meta:old>
+                            <meta:name>CERT_SIG</meta:name>
+                            <meta:notag/>
+                        </meta:old>
+                        <meta:old>
+                            <meta:name>CERT_ENC</meta:name>
+                            <meta:notag/>
+                        </meta:old>
+                        <meta:asn1tag>0x7F23</meta:asn1tag>
+                    </meta:binary>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="cvCertificate" type="sam:CvCertificate">
+                <xs:annotation>
+                    <xs:documentation>Certificate that is relevant for other entities in communicating with the SAM. Storing this in the SAM is intended to ease the portability of the SAM.</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:binary>
+                                <meta:since>3.0.0</meta:since>
+                                <meta:asn1tag>0x7F21</meta:asn1tag>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

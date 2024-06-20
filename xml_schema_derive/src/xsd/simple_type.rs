@@ -74,10 +74,6 @@ pub(crate) mod tests {
     fn assert_annotation_old_name(&self, documentation: &str, old_names: Vec<&str>) {
       Annotation::assert_old_name(self.annotation.as_ref().unwrap(), documentation, old_names)
     }
-
-    fn assert_annotation_since(&self, documentation: &str, since: &str) {
-      Annotation::assert_since(self.annotation.as_ref().unwrap(), documentation, since);
-    }
   }
 
   fn get_simple_type<'a>(schema: &'a Schema, type_name: &str) -> &'a SimpleType {
@@ -112,6 +108,7 @@ pub(crate) mod tests {
             xml: Some(Xml {
               ..Default::default()
             }),
+            binary: None,
           }),
         }),
       }),
@@ -143,9 +140,10 @@ pub(crate) mod tests {
       &Some(NumericRestrictionValue { value: 1024 }),
     );
 
-    blocking_reason_text.assert_annotation_since(
+    Annotation::check(
+      blocking_reason_text.annotation.as_ref().unwrap(),
       "Defines a free text for blocking reason description with a maximum length of 1024 bytes.",
-      "3.0.0",
+      None,
     );
   }
 

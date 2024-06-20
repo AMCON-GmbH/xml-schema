@@ -1,3 +1,4 @@
+use crate::xsd::choice::Choice;
 use crate::xsd::element::Element;
 
 #[derive(Clone, Default, Debug, PartialEq, YaDeserialize)]
@@ -5,4 +6,6 @@ use crate::xsd::element::Element;
 pub struct Sequence {
   #[yaserde(rename = "element")]
   pub elements: Vec<Element>,
+  #[yaserde(rename = "choice")]
+  pub choices: Vec<Choice>
 }

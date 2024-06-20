@@ -33,6 +33,19 @@ namespace = "meta: urn:ets:metainfo")]
 pub struct MetaInfo {
   #[yaserde(rename = "xml")]
   pub xml: Option<Xml>,
+  #[yaserde(rename = "binary")]
+  pub binary: Option<Binary>,
+}
+
+#[derive(Clone, Default, Debug, PartialEq, YaDeserialize)]
+#[yaserde(rename = "metaInfo"
+prefix = "meta",
+namespace = "meta: urn:ets:metainfo")]
+pub struct Binary {
+  #[yaserde(rename = "asn1tag"
+  prefix = "meta",
+  namespace = "meta: urn:ets:metainfo")]
+  pub asn1_tag: Option<String>,
 }
 
 #[derive(Clone, Default, Debug, PartialEq, YaDeserialize)]
@@ -40,10 +53,6 @@ pub struct MetaInfo {
 prefix = "meta",
 namespace = "meta: urn:ets:metainfo")]
 pub struct Xml {
-  #[yaserde(rename = "since"
-    prefix = "meta",
-    namespace = "meta: urn:ets:metainfo")]
-  pub since: Option<String>,
   #[yaserde(rename = "old")]
   pub old: Vec<Old>,
 }

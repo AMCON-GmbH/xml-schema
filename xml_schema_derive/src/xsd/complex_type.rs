@@ -1,3 +1,4 @@
+use crate::xsd::choice::Choice;
 use crate::xsd::{
   annotation::Annotation, attribute::Attribute, complex_content::ComplexContent,
   sequence::Sequence, simple_content::SimpleContent,
@@ -14,13 +15,19 @@ pub struct ComplexType {
   pub id: String,
   #[yaserde(rename = "attribute")]
   pub attributes: Vec<Attribute>,
+  #[yaserde(rename = "sequence")]
   pub sequence: Option<Sequence>,
+  #[yaserde(rename = "choice")]
+  pub choice: Option<Choice>,
   #[yaserde(rename = "simpleContent")]
   pub simple_content: Option<SimpleContent>,
   #[yaserde(rename = "complexContent")]
   pub complex_content: Option<ComplexContent>,
   #[yaserde(rename = "annotation")]
   pub annotation: Option<Annotation>,
+  #[yaserde(rename = "abstract", attribute)]
+  /// should default to false
+  pub is_abstract: Option<bool>,
 }
 
 /// Tests if complex types are deserialized correctly from xsd files.
@@ -28,12 +35,15 @@ pub struct ComplexType {
 /// That is because isolated ComplexTypes do not exist and namespaces can only be checked in the context of a Schema.
 #[cfg(test)]
 mod tests {
+  use crate::xsd::annotation::Annotation;
+  use crate::xsd::choice::Choice;
   use crate::xsd::complex_type::ComplexType;
   use crate::xsd::element::Element;
   use crate::xsd::schema::Schema;
   use crate::xsd::sequence::Sequence;
   use std::fs;
-  use crate::xsd::annotation::Annotation;
+
+  use pretty_assertions::assert_eq;
 
   fn get_complex_type<'a>(schema: &'a Schema, type_name: &str) -> &'a ComplexType {
     schema
@@ -44,7 +54,7 @@ mod tests {
   }
 
   #[test]
-  fn de_complex_type_with_sequence() {
+  fn de_with_sequence_of_elements() {
     // given
     let xsd = fs::read_to_string("fixtures/common.xsd").unwrap();
 
@@ -59,11 +69,13 @@ mod tests {
     assert_eq!(org_unit.complex_content, None);
     assert_eq!(org_unit.attributes, vec![]);
     assert_eq!(org_unit.simple_content, None);
+    assert_eq!(org_unit.is_abstract, None);
+    assert_eq!(org_unit.choice, None);
 
-    Annotation::assert_since(
+    Annotation::check(
       org_unit.annotation.as_ref().unwrap(),
       "Combination of organisation and its role in the IFM context.",
-      "3.0.0",
+      None,
     );
 
     assert_eq!(
@@ -80,8 +92,78 @@ mod tests {
             r#type: Some(String::from("tns:PartnerRoleCode")),
             ..Default::default()
           }
-        ]
+        ],
+        choices: vec![],
       })
     );
   }
+
+  #[test]
+  fn de_is_abstract_is_correctly_parsed() {
+    // given
+    let xsd = fs::read_to_string("fixtures/ion.xsd").unwrap();
+
+    // when
+    let schema: Schema = yaserde::de::from_str(xsd.as_str()).unwrap();
+
+    // then
+    let org_unit = get_complex_type(&schema, "CompactMessage");
+
+    assert!(org_unit.is_abstract.unwrap());
+  }
+
+  #[test]
+  fn de_asn1tag_is_correctly_parsed() {
+    // given
+    let xsd = fs::read_to_string("fixtures/sam-generated.xsd").unwrap();
+
+    // when
+    let schema: Schema = yaserde::de::from_str(xsd.as_str()).unwrap();
+
+    // then
+    let po_token = get_complex_type(&schema, "ProductOwnerToken");
+
+    Annotation::check(
+      po_token.annotation.as_ref().unwrap(),
+      "Indicates that the SAM may issue products for the contained organisation. Also contains a sequence number for the number of issuances already authorised for products of this organisation.",
+      Some("0x70"))
+  }
+
+  #[test]
+  fn de_with_choice() {
+    // given
+    let xsd = fs::read_to_string("fixtures/terminal.xsd").unwrap();
+
+    // when
+    let schema: Schema = yaserde::de::from_str(xsd.as_str()).unwrap();
+
+    // then
+    let variant = get_complex_type(&schema, "EntitlementHotlistVariant");
+
+    assert_eq!(
+      variant.choice.as_ref().unwrap(),
+      &Choice {
+        elements: vec![
+          Element {
+            name: Some(String::from("entitlementHotlist")),
+            r#type: Some(String::from("hla:EntitlementHotlist")),
+            ..Default::default()
+          },
+          Element {
+            name: Some(String::from("incrementalEntitlementHotlist")),
+            r#type: Some(String::from("hla:IncrementalEntitlementHotlist")),
+            ..Default::default()
+          },
+          Element {
+            name: Some(String::from("entitlementWithProductHotlist")),
+            r#type: Some(String::from("hla:EntitlementWithProductHotlist")),
+            ..Default::default()
+          }
+        ],
+        ..Default::default()
+      }
+    );
+  }
+
+  // TODO test with sequence of elements and choices (po-oa-management-attachments.IncrementalActionList)
 }

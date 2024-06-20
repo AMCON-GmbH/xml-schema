@@ -1,0 +1,969 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema version="3.0.0-rc.3"
+           targetNamespace="https://eticore.org/ion/3"
+           xmlns:tns="https://eticore.org/ion/3"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:co="https://eticore.org/common/3"
+           xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+           xmlns:meta="urn:ets:metainfo"
+           elementFormDefault="qualified">
+
+    <xs:annotation>
+        <xs:documentation>
+            This schema contains all data structures and elements which are used in the ION
+            for messaging purposes.
+            Version 3.0.0-rc.3
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:include schemaLocation="../../../../org/eticore/ion/3/ion-enums.xsd"/>
+    <xs:include schemaLocation="../../../../org/eticore/ion/3/ion-event-enums.xsd"/>
+
+    <xs:import namespace="https://eticore.org/common/3" schemaLocation="../../../../org/eticore/common/3/common.xsd"/>
+
+    <xs:complexType name="IonMessageId" id="_9cc9b5da-1b3c-4b3a-8fdc-f211dd2b0709">
+        <xs:annotation>
+            <xs:documentation>
+                The data type of an ID for messages which are processed via the ION.
+                The conversation has a wider scope than the message since the sender references
+                its process with this ID as well as the receiver, which has to process the message data.
+                This element serves as a correlation between the sender's request and the receiver's reply.
+                The message ID is an ION-wide unique combination of the message number, the sender service,
+                the sender's organisation ID and the sender's role.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">IONTransaktion_ID_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="senderId" type="co:OrganisationId">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>transSender_ID</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="senderRole" type="co:PartnerRoleCode">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>transSenderRolle</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="senderService" type="tns:ServiceName">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="messageNumber" type="tns:IonMessageNumber">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>transSequenznummer</meta:name>
+                                    <meta:type xmlns="http://vdv/ka/common/types/2">SequenceNumberFour</meta:type>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="IonMessageNumber" id="_d453d9c2-67f6-4cf0-99cd-ce362a986705">
+        <xs:annotation>
+            <xs:documentation>
+                The message number of an ION message. Must be unique for one sender (organisation ID), role and service.
+                A sender is not allowed to use a message number again (exception: a deliberate retry in the case of a communication error).
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="512"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="RepeatCounter" id="_3817ca31-46ac-43f3-8119-f111a013491b">
+        <xs:annotation>
+            <xs:documentation>
+                Number of times this message has already been sent.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:unsignedByte">
+            <xs:totalDigits value="3"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ProcessInstanceId" id="_91d853ad-6432-4275-b288-b54529f87043">
+        <xs:annotation>
+            <xs:documentation>
+                ID of the process instance containing the name of the basic process and a UUID.
+                To generate a process instance ID, take the basic process name (from ProcessNameEnum)
+                and a UUID (in canonical string form) and combine them separated by an underscore.
+                Template: ProcessName_00000000-0000-0000-0000-000000000000
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <!-- for less talented tools / to be fail-fast, we also add min and max length information -->
+            <!-- basic process name [1,64] + underscore [1] + UUID [36]  -->
+            <xs:minLength value="38"/>
+            <xs:maxLength value="101"/>
+            <!-- the max length 64 matches the max length of StringEnumMarker which is the base type for ProcessNameEnum -->
+            <xs:pattern value="[a-zA-Z]{1,64}_[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="CommunicationInformation" id="_d4029442-de3f-45cb-8ca1-1e91f5c637e6">
+        <xs:annotation>
+            <xs:documentation>
+                Base type contained in all ION messages. Contains sender, receiver and message information.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">ION_TX_HEADER_Type</meta:name>
+                            <meta:deleted>
+                                <meta:name>transAuftrag</meta:name>
+                            </meta:deleted>
+                            <meta:deleted>
+                                <meta:name>transStatus</meta:name>
+                            </meta:deleted>
+                            <meta:deleted>
+                                <meta:name>transTransaktionsTyp</meta:name>
+                            </meta:deleted>
+                            <meta:deleted>
+                                <meta:name>transVersion</meta:name>
+                            </meta:deleted>
+                            <meta:deleted>
+                                <meta:name>transSignaturTyp</meta:name>
+                            </meta:deleted>
+                            <meta:deleted>
+                                <meta:name>transSignaturZertifikat</meta:name>
+                            </meta:deleted>
+                            <meta:deleted>
+                                <meta:name>transSignatur</meta:name>
+                            </meta:deleted>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="receiverId" type="co:OrganisationId">
+                <xs:annotation>
+                    <xs:documentation>Organisation ID of the message receiver</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>transEmpfaenger_ID</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="receiverRole" type="co:PartnerRoleCode">
+                <xs:annotation>
+                    <xs:documentation>IFM role of the message receiver</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>transEmpfaengerRolle</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="receiverService" type="tns:ServiceName">
+                <xs:annotation>
+                    <xs:documentation>Service of the message receiver</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="messageId" type="tns:IonMessageId">
+                <xs:annotation>
+                    <xs:documentation>Message ID. See the documentation of the referenced type</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>transTransaktion_ID</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="messageTimestamp" type="co:ZonedDateTime">
+                <xs:annotation>
+                    <xs:documentation>
+                        Timestamp when the message was sent via the ION by the originator (also adapted in retry scenarios).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>transTransaktionsZeitpunkt</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="repeatCounter" type="tns:RepeatCounter" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Number of times this message has already been sent. Defaults to zero.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>transWiederholungsZaehler</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="processInstanceId" type="tns:ProcessInstanceId">
+                <xs:annotation>
+                    <xs:documentation>
+                        ID of the process instance containing the name of the basic process and a UUID.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>transAuftrag</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                            <meta:remarks>Now only informative, but mandatory</meta:remarks>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OriginalRequestCommunicationInformation" id="_0ed228a4-b739-46cc-82b5-f0ca4a299d63">
+        <xs:annotation>
+            <xs:documentation>
+                Base data for all reply messages. Contains the message ID of the request
+                for correlation purposes.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">TX_RET_Type</meta:name>
+                            <meta:deleted>
+                                <meta:name>transOrigSignatur</meta:name>
+                            </meta:deleted>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="originalRequestCorrelationId" type="tns:IonMessageId">
+                <xs:annotation>
+                    <xs:documentation>
+                        Contains the message ID of the original request
+                        for correlation purposes.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>transOrigID</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="originalRequestTimestamp" type="co:ZonedDateTime">
+                <xs:annotation>
+                    <xs:documentation>
+                        Contains the time stamp of the original request
+                        for plausibility check purposes.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>transOriginalZeit</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="originalRepeatCounter" type="tns:RepeatCounter" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Contains the repeat counter of the original request
+                        for operational monitoring purposes.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Message" id="_6f30fbde-3d41-4980-9629-20f750245028" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+                Base type for all business-level request, response and exception types.
+                Note that delivery acknowledgements / rejections are not part of the hierarchy.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">TX_BASE_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="communicationInformation" type="tns:CommunicationInformation">
+                <xs:annotation>
+                    <xs:documentation>
+                        Communication information.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>txbase</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Request" id="_40e8e083-a6b7-4d15-ba93-b3c871fb3610" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+                Base type for all types that are used in requests (on the business level).
+                Asynchronously communicated replies are requests (on the technical level), but replies (on the business level).
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:Message"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Reply" id="_e5df81c3-3ef1-4b7c-87ec-3b2e9117aab1" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+                Base type for all types that are used in replies (on the business level).
+                Asynchronously communicated replies are requests (on the technical level), but replies (on the business level).
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:Message">
+                <xs:sequence>
+                    <xs:element name="originalRequestCommunicationInformation"
+                                type="tns:OriginalRequestCommunicationInformation">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Original request communication information.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="warningList" type="tns:WarningList">
+                        <xs:annotation>
+                            <xs:documentation>
+                                List of events that might happen during processing.
+                                Events can be additional information or warnings, which might
+                                refer to previous messages (not only one previous request).
+                            </xs:documentation>
+                            <xs:appinfo>
+                                <meta:metaInfo>
+                                    <meta:remarks>Replaces single code and message in TXBS_Type</meta:remarks>
+                                </meta:metaInfo>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BusinessAcknowledgement" id="_8c6171c1-4d14-4c99-a4cd-a3af85225295" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure that contains an acknowledgement of a previous ION request message,
+                together with communication information for the current message. Additionally and
+                optionally, a list of (processing) warnings can be attached.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">TXB_Type</meta:name>
+                        </meta:old>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">TXBS_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:Reply"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BusinessException" id="_5e105e65-cdf1-4851-93dc-6c01b5c72425">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure that transports a business exception.
+                Consists of a reference to a previous request, which processing caused this
+                exception, an optional warning list with further information, if needed and the
+                error itself, which comes with an abbreviation and an optional error message.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">TXA_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:Reply">
+                <xs:sequence>
+                    <xs:element name="error" type="tns:Error">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Error which raised due to a previous request.
+                            </xs:documentation>
+                            <xs:appinfo>
+                                <meta:metaInfo>
+                                    <meta:xml>
+                                        <meta:old>
+                                            <meta:name>transAblehnungGrund</meta:name>
+                                            <meta:type xmlns="http://vdv/ka/common/types/2">INT1</meta:type>
+                                        </meta:old>
+                                    </meta:xml>
+                                </meta:metaInfo>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="CompactCommunicationInformation" id="_0f89b138-3456-4062-a0ee-553d326f6af9">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure which contains a reduced communication information for the current message:
+                Only the message number and the processInstanceId are present.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="messageNumber" type="tns:IonMessageNumber"/>
+            <xs:element name="processInstanceId" type="tns:ProcessInstanceId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CompactMessage" id="_0447629c-c557-43b5-af3d-68c156fd2adc" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+                Base type for all compact business-level request, response, and exception types.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="compactCommunicationInformation" type="tns:CompactCommunicationInformation">
+                <xs:annotation>
+                    <xs:documentation>
+                        Compact communication information.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CompactRequest" id="_c46d2698-e14a-4def-994c-563cee1c2956" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+                Base type for all types that are used in compact requests (on the business level).
+                Asynchronously communicated replies are requests (on the technical level), but replies (on the business level).
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:CompactMessage"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="CompressedBusinessReplyList" id="_852889d6-a6d8-4d77-ac32-e025b776658a">
+        <xs:annotation>
+            <xs:documentation>
+                The structure that contains a compressed list with business acknowledgements or business exceptions.
+                Both kinds of list entries are possible.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="compressedBusinessReplyList" type="tns:CompressedXmlList">
+                <xs:annotation>
+                    <xs:documentation>Contains the compressed list
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                                <meta:xmlContentOfType xmlns="https://eticore.org/ion/attachments/3">compactBusinessReplyList</meta:xmlContentOfType>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Event" abstract="true" id="_4cb471e9-14a5-426a-bc97-ebaa05dc6cc5">
+        <xs:annotation>
+            <xs:documentation>
+                Common abstract type for all possible events.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/ion/2">TXM_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                    <meta:remarks>is used in WarningList, helps the requirements of TXM and TXBS</meta:remarks>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="eventIdentifier" type="co:EventIdentifier">
+                <xs:annotation>
+                    <xs:documentation>
+                        String-based identifier which specifies the event.
+                        The identifier gives a first impression of the event.
+                        Must be one of the identifiers which are defined either globally
+                        or service-wide as ($area[Warning|Error]Enum).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>meldungStatus</meta:name>
+                                </meta:old>
+                                <meta:old>
+                                    <meta:name>bestaetigungStatus</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="eventDescription" type="tns:EventDescription" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Description that explains the event and gives further details.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>meldungStatusText</meta:name>
+                                </meta:old>
+                                <meta:old>
+                                    <meta:name>bestaetigungStatusText</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="messageReference" type="tns:IonMessageId" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Optional reference to one or more ION message IDs that specifies the previous message(s)
+                        related to this event.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>referenzTransaktion</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="entitlementReference" type="co:EntitlementId" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Optional reference to one or more Entitlement IDs this event relates to.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="applicationReference" type="co:AppInstanceId" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Optional reference to one or more application instance IDs this event relates to. This application can be a
+                        user medium application or motics app. As the SAM ID has the type of appInstanceId, applicationReference may
+                        indicate a SAM, in case of SAM related cases such as ConfigureSamException.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="EventDescription" id="_fb71d5ea-7dbc-493b-bb61-8aa59b7dd5f0">
+        <xs:annotation>
+            <xs:documentation>
+                Additional description for error code inside a common rejection message.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/common/2">StatusText</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="1024"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Warning" id="_0fd34035-80cc-4ada-8e30-241c3bb54360">
+        <xs:annotation>
+            <xs:documentation>
+                Classifies an event as a warning level.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:Event"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Error" id="_b1c36bd0-3f94-49d2-b285-8f06262f55e4">
+        <xs:annotation>
+            <xs:documentation>
+                Classifies an event as an error level.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:Event"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="CompressedXmlList" xmime:expectedContentTypes="application/zip" id="_26610cb8-54af-4406-b5df-bcb884b049e1">
+        <xs:annotation>
+            <xs:documentation>
+                This element contains a Base64-encoded zipped XML list.
+                To get the (unzipped) XML format for later processing purposes, you have to decode the Base64 string
+                to binary and then unpack the resulting zip file with a standard zip program or programming API.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+            <xs:appinfo>
+                The binding generator does not consider the xmime:expectedContentTypes attribute here.
+                You have to specify it additionally in each element where you refer this CompressedXmlList type.
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:base64Binary"/>
+    </xs:simpleType>
+
+    <xs:complexType name="WarningList" id="_2b132d5e-7367-47ad-bea7-27be9e9ef2e4">
+        <xs:annotation>
+            <xs:documentation>
+                List of warnings.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="warning" type="tns:Warning" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="OperationName" id="_ce21124f-ad63-4f27-ad39-46f1ed30a17e">
+        <xs:annotation>
+            <xs:documentation>
+                Defines the name of the target operation only for routing purposes.
+                The name is identical to the (encrypted) payload name.
+                The web service framework itself ensures that the right operation
+                is invoked for the operation name, so it is
+                not needed for operation invocation identification as soon as the payload has been decrypted.
+                The operation name is needed to determine the context (synchronous, asynchronous, timeout, cachable, etc.).
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="DiscardedMessagesMetadata" id="_95328ea9-deee-495b-9689-e971c9fc1561">
+        <xs:annotation>
+            <xs:documentation>
+                Metadata of messages which become discarded due to WSS expiry. Used to inform the original sender that
+                the message could not be delivered to the recipient.
+                Since the number of messages can be very high, this structure gives an overview but
+                no information about single messages. Furthermore, due to security reasons, the original message
+                would be refused by the WSS framework.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="receiverId" type="co:OrganisationId">
+                <xs:annotation>
+                    <xs:documentation>
+                        The organisation ID of the receiver that was intended to get the message.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="receiverRole" type="co:PartnerRoleCode">
+                <xs:annotation>
+                    <xs:documentation>
+                        The (EFM) partner role of the receiver that was intended to get the message.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="receiverService" type="tns:ServiceName">
+                <xs:annotation>
+                    <xs:documentation>
+                        The name of the service that the original message was intended for.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="operationName" type="tns:OperationName">
+                <xs:annotation>
+                    <xs:documentation>
+                        The name of the operation as message type as information which messages could not be delivered.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="fromMessageTimestamp" type="co:ZonedDateTime">
+                <xs:annotation>
+                    <xs:documentation>
+                        The timestamp of the oldest message used for metadata information grouping.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="untilMessageTimestamp" type="co:ZonedDateTime">
+                <xs:annotation>
+                    <xs:documentation>
+                        The timestamp of the newest message used for metadata information grouping.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="amountOfExpiredMessages" type="xs:integer">
+                <xs:annotation>
+                    <xs:documentation>
+                        This field contains the amount of messages for the same receiver, role, service, and operation
+                        which were discarded since they couldn't be delivered within the configured time period.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="amountOfUnexpectedReplies" type="xs:integer">
+                <xs:annotation>
+                    <xs:documentation>
+                        This field contains the amount of messages for the same receiver, role, service, and operation
+                        which were discarded because the target system replied in an unexpected way.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DiscardedMessages" id="_d532f152-ac72-4566-b34c-f6619b31224f">
+        <xs:annotation>
+            <xs:documentation>
+                List of discarded message metadata information.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="discardedMessagesMetadata" type="tns:DiscardedMessagesMetadata" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        List of discarded message metadata information. Contains at least one element.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

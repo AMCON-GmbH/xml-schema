@@ -17,11 +17,12 @@ mod sequence;
 mod simple_content;
 mod simple_type;
 mod union;
+mod choice;
 
 /// Common test utility functions.
 #[cfg(test)]
 pub(crate) mod tests {
-  use crate::xsd::annotation::{Annotation, AppInfo, MetaInfo, Xml};
+  use crate::xsd::annotation::{Annotation, AppInfo, Binary, MetaInfo, Xml};
   use std::collections::HashSet;
 
   ///
@@ -43,19 +44,19 @@ pub(crate) mod tests {
       clone
     }
 
-    pub fn assert_since(annotation: &Annotation, documentation: &str, since: &str) {
+    pub fn check(annotation: &Annotation, expected_doc: &str, expected_asn1_tag: Option<&str>) {
       let actual = annotation.reduce_whitespaces();
 
       let expected = Annotation {
         id: None,
         attributes: vec![],
-        documentation: Some(reduce_whitespace(documentation)),
+        documentation: Some(reduce_whitespace(expected_doc)),
         app_info: Some(AppInfo {
           meta_info: Some(MetaInfo {
-            xml: Some(Xml {
-              since: Some(String::from(since)),
-              ..Default::default()
-            }),
+            xml: Some(Xml { old: vec![] }),
+            binary: expected_asn1_tag.map(|tag| Binary {
+                asn1_tag: Some(String::from(tag)),
+              }),
           }),
         }),
       };
@@ -73,7 +74,6 @@ pub(crate) mod tests {
       assert_eq!(actual.id, None);
       assert_eq!(actual.attributes, vec![]);
       assert_eq!(actual.documentation, Some(reduce_whitespace(documentation)));
-      assert_eq!(actual_xml.since, None);
       assert!(actual_xml
         .old
         .iter()

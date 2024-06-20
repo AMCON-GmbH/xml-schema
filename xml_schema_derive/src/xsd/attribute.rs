@@ -1,3 +1,4 @@
+use crate::xsd::annotation::Annotation;
 use crate::xsd::simple_type::SimpleType;
 
 #[derive(Clone, Default, Debug, PartialEq, YaDeserialize)]
@@ -10,17 +11,15 @@ pub struct Attribute {
   #[yaserde(prefix = "xs", attribute)]
   pub name: Option<String>,
   #[yaserde(rename = "type", attribute)]
-  pub kind: Option<String>,
-  // #[yaserde(attribute)]
-  // pub default: Option<String>,
-  // #[yaserde(attribute)]
-  // pub fixed: Option<String>,
+  pub r#type: Option<String>,
   #[yaserde(rename = "use", attribute)]
   pub required: Required,
   #[yaserde(rename = "ref", attribute)]
-  pub reference: Option<String>,
+  pub refers: Option<String>,
   #[yaserde(rename = "simpleType")]
   pub simple_type: Option<SimpleType>,
+  #[yaserde(rename = "annotation")]
+  pub annotation: Option<Annotation>
 }
 
 #[derive(Clone, Debug, Default, PartialEq, YaDeserialize)]

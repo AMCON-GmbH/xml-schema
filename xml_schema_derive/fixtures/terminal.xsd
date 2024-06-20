@@ -1,0 +1,874 @@
+<xs:schema version="3.0.0-rc.3" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="https://eticore.org/terminal/3"
+           xmlns:tns="https://eticore.org/terminal/3"
+           xmlns:co="https://eticore.org/common/3"
+           xmlns:ion="https://eticore.org/ion/3"
+           xmlns:po="https://eticore.org/po/3"
+           xmlns:po-oa-management-att="https://eticore.org/po-oa-management/attachments/3"
+           xmlns:hla="https://eticore.org/hotlist/attachments/3"
+           xmlns:eui="https://eticore.org/eui/3"
+           xmlns:meta="urn:ets:metainfo">
+
+    <xs:annotation>
+        <xs:documentation>
+            Schema which defines data types used in the terminal context.
+            Version 3.0.0-rc.3
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:import namespace="https://eticore.org/ion/3" schemaLocation="../../../../org/eticore/ion/3/ion.xsd"/>
+    <xs:import namespace="https://eticore.org/common/3" schemaLocation="../../../../org/eticore/common/3/common.xsd"/>
+    <xs:import namespace="https://eticore.org/po/3" schemaLocation="../../../../org/eticore/po/3/po.xsd"/>
+    <xs:import namespace="https://eticore.org/hotlist/attachments/3"
+               schemaLocation="../../../../org/eticore/hotlist/attachments/3/hotlist-attachments.xsd"/>
+    <xs:import namespace="https://eticore.org/po-oa-management/attachments/3"
+               schemaLocation="../../../../org/eticore/po-oa-management/attachments/3/po-oa-management-attachments.xsd"/>
+    <xs:import namespace="https://eticore.org/eui/3" schemaLocation="../../../../org/eticore/eui/3/eui.xsd"/>
+
+    <xs:complexType name="Hotlists" id="_1a547756-1b37-43e5-937f-7addd020b26e">
+        <xs:annotation>
+            <xs:documentation>
+                Contains a hotlist for every hotlist type.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="entitlementHotlistVariant" type="tns:EntitlementHotlistVariant"/>
+            <xs:element name="applicationHotlistVariant" type="tns:ApplicationHotlistVariant"/>
+            <xs:element name="authenticationKeyHotlist" type="hla:AuthenticationKeyHotlist"/>
+            <xs:element name="organisationHotlist" type="hla:OrganisationHotlist"/>
+            <xs:element name="samHotlist" type="hla:SamHotlist"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ActionListVariant" id="_16ebdbd7-d466-4b2a-ab08-9098864b1677">
+        <xs:annotation>
+            <xs:documentation>
+                Contains one of the action list variants (full, incremental).
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element name="actionList" type="po-oa-management-att:ActionList"/>
+            <xs:element name="incrementalActionList" type="po-oa-management-att:IncrementalActionList"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="EntitlementHotlistVariant" id="_294ac1df-9885-47c4-8f6e-89710043ac7c">
+        <xs:annotation>
+            <xs:documentation>
+                Contains one of the entitlement hotlist variants (full, incremental, with product information).
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element name="entitlementHotlist" type="hla:EntitlementHotlist"/>
+            <xs:element name="incrementalEntitlementHotlist" type="hla:IncrementalEntitlementHotlist"/>
+            <xs:element name="entitlementWithProductHotlist" type="hla:EntitlementWithProductHotlist"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="ApplicationHotlistVariant" id="_35131fb2-73f5-4e0a-98a9-ddd97e133e37">
+        <xs:annotation>
+            <xs:documentation>
+                Contains one of the application hotlist variants (full, incremental).
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element name="applicationHotlist" type="hla:ApplicationHotlist"/>
+            <xs:element name="incrementalApplicationHotlist" type="hla:IncrementalApplicationHotlist"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="DefectiveUserMediumWithApplicationInformation" id="_1bb3fba1-32a7-4cf9-9813-83bc8a594075">
+        <xs:annotation>
+            <xs:documentation>Information of defective user medium with application</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="terminalActionData" type="co:TerminalActionData">
+                <xs:annotation>
+                    <xs:documentation>Terminal action data</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="mediumId" type="co:MediumId">
+                <xs:annotation>
+                    <xs:documentation>ID of a user medium. Not necessarily the application instance ID.
+                        Normally printed outside on a chip card or similar.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>Nutzermedien_ID</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BaseInvalidEntityExtendedLogging" id="_5a9c430b-4809-4579-aabc-e10c2bfa2f60">
+        <xs:annotation>
+            <xs:documentation>Base information for notifications for invalid entities
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="terminalActionData" type="co:TerminalActionData">
+                <xs:annotation>
+                    <xs:documentation>Terminal action data</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                            <meta:remarks>Previously, the fields were inlined</meta:remarks>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="validationCode" type="tns:ValidationCode">
+                <xs:annotation>
+                    <xs:documentation>Reason for the notification as classification code</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>logValidationCode</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="InvalidApplicationExtendedLogging" id="_34d77d86-6366-45c8-8b0a-8e3f46753c8e">
+        <xs:annotation>
+            <xs:documentation>Information set of notifications for invalid applications
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/kvp-dl-pv/2">TXKNAWA_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:BaseInvalidEntityExtendedLogging">
+                <xs:sequence>
+                    <xs:element name="appInstanceId" type="co:AppInstanceId">
+                        <xs:annotation>
+                            <xs:documentation>ID of the invalid user medium with application or SCE</xs:documentation>
+                            <xs:appinfo>
+                                <meta:metaInfo>
+                                    <meta:xml>
+                                        <meta:old>
+                                            <meta:name>appInstanz_ID</meta:name>
+                                        </meta:old>
+                                    </meta:xml>
+                                </meta:metaInfo>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="InvalidEntitlementExtendedLogging" id="_0b3342d4-aa76-4727-a02f-ae238a1a0aed">
+        <xs:annotation>
+            <xs:documentation>Information set of notifications for invalid entitlements
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/kvp-dl-pv/2">TXKNAWB_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:BaseInvalidEntityExtendedLogging">
+                <xs:sequence>
+                    <xs:element name="entitlementId" type="co:EntitlementId">
+                        <xs:annotation>
+                            <xs:documentation>ID of the invalid entitlement</xs:documentation>
+                            <xs:appinfo>
+                                <meta:metaInfo>
+                                    <meta:xml>
+                                        <meta:old>
+                                            <meta:name>berBerechtigung_ID</meta:name>
+                                        </meta:old>
+                                    </meta:xml>
+                                </meta:metaInfo>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="appInstanceId" type="co:AppInstanceId" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>ID of the user medium with application or the SCE containing the invalid entitlement</xs:documentation>
+                            <xs:appinfo>
+                                <meta:metaInfo>
+                                    <meta:xml>
+                                        <meta:since>3.0.0</meta:since>
+                                    </meta:xml>
+                                </meta:metaInfo>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="ValidationCode" id="_820e6240-c5f7-4a50-90b3-6d1f3f55aa10">
+        <xs:annotation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/kvp-dl-pv/2">Validation_CODE_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="co:EnumMarker"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="ValidationEnum" id="_9089a62e-e081-4c85-82e5-c2bcf3787ca4">
+        <xs:annotation>
+            <xs:documentation>
+                Validation enum classifies possible reasons for creating extended logging
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/kvp-dl-pv/2">Validation_CODE_Type</meta:name>
+                            <meta:deletedValue>
+                                <meta:value>0</meta:value>
+                                <meta:documentation>Keine Angabe</meta:documentation>
+                                <meta:reason>Undefined values should not be used.</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>7</meta:value>
+                                <meta:documentation>sym. Schluessel gesperrt oder nicht vorhanden</meta:documentation>
+                                <meta:reason>Relevant symmetric keys are obsolete</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>8</meta:value>
+                                <meta:documentation>asym. Schuessel gesperrt oder nicht vorhanden</meta:documentation>
+                                <meta:reason>Relevant asymmetric keys are obsolete</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>9</meta:value>
+                                <meta:documentation>Status im App. Verzeichnis nicht gesetzt</meta:documentation>
+                                <meta:reason>UM sets status - therefore it is obsolete</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>10</meta:value>
+                                <meta:documentation>Ausgabetransaktionskennung fehlt</meta:documentation>
+                                <meta:reason>Obsolete in the new static entitlement structure</meta:reason>
+                            </meta:deletedValue>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="tns:ValidationCode">
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Inauthentic data
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Daten nicht authentisch</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>
+                        Temporally invalid
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Zeitlich ungueltig</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="3">
+                <xs:annotation>
+                    <xs:documentation>
+                        Spatially invalid
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Raeumlich ungueltig</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="4">
+                <xs:annotation>
+                    <xs:documentation>
+                        Invalid personal entitlement
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Persoenlich ungueltig (fuer personengebundene Objekte)</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="5">
+                <xs:annotation>
+                    <xs:documentation>
+                        Hotlisted SAM (only for static entitlements)
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>gesperrter SAM (nur Statische Berechtigung)</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="6">
+                <xs:annotation>
+                    <xs:documentation>
+                        Hotlisted organisation (only for static entitlements)
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>gesperrte ORG (nur Statische Berechtigung)</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="11">
+                <xs:annotation>
+                    <xs:documentation>
+                        Terminated (EN 1545-1 cancelled (5))
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="12">
+                <xs:annotation>
+                    <xs:documentation>
+                        Hotlisted static entitlement
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="13">
+                <xs:annotation>
+                    <xs:documentation>
+                        Hotlisted motics application
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:since>3.0.0</meta:since>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="19">
+                <xs:annotation>
+                    <xs:documentation>
+                        Blocked (EN 1545-1 blocked (19))
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>gesperrt (EN 1545-1 blocked (19))</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ReadCustomerAndDiscountsResponse" id="_3bc9e2a2-0e17-4262-a646-0b598cf50942">
+        <xs:annotation>
+            <xs:documentation>
+                Data structure for app instance id, customer and discounts of a user medium with application.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="umAppInstanceId" type="co:AppInstanceId"/>
+            <xs:element name="customer" type="co:Customer" minOccurs="0"/>
+            <xs:element name="discounts" type="co:Discounts" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="WriteCustomerAndDiscounts" id="_a8aacb4e-671f-4ec3-96da-ada4efb2743c">
+        <xs:annotation>
+            <xs:documentation>
+                Asking terminal to write information regarding customer and discounts.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="umAppInstanceId" type="co:AppInstanceId"/>
+            <xs:element name="customer" type="co:Customer" minOccurs="0"/>
+            <xs:element name="discounts" type="co:Discounts" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UserMediumWithApplicationInformation" id="_19862c77-a479-4550-a184-468b7615b567">
+        <xs:annotation>
+            <xs:documentation>Information about a User Medium with Application</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="umAppInstanceId" type="co:AppInstanceId"/>
+            <xs:element name="applicationEffectiveTime" type="co:ApplicationEffectiveTime" minOccurs="0"/>
+            <xs:element name="applicationExpirationTime" type="co:ApplicationExpirationTime" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ConfigureUserMediumWithApplicationData" id="_63063912-6dd3-4baa-86b3-a1f4ee8cf2c9">
+        <xs:annotation>
+            <xs:documentation>Configure the given user medium with application</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="umAppInstanceId" type="co:AppInstanceId"/>
+            <xs:element name="configureUserMediumWithApplication" type="eui:ConfigureUserMediumWithApplication"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="InitialiseUserMediumWithApplicationForCustomer" id="_e424673a-2f86-432e-961b-edd15441676e">
+        <xs:annotation>
+            <xs:documentation>
+                Initialise the user medium with application for a customer using the given data.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="umAppInstanceId" type="co:AppInstanceId"/>
+            <xs:element name="customer" type="co:Customer" minOccurs="0"/>
+            <xs:element name="discounts" type="co:Discounts" minOccurs="0"/>
+            <xs:element name="favourites" type="co:Favourites" minOccurs="0"/>
+            <xs:element name="passwordParameters" type="co:PasswordParameters" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UserMediumWithApplicationInitialisationNotification"
+                    id="_eaf49971-284b-4c7a-bff7-1c31a4211631">
+        <xs:annotation>
+            <xs:documentation>
+                Contains information about the initialised user medium with application and the terminal involved.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                    <meta:remarks>This could potentially be used as a replacement for TXAA.</meta:remarks>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="umAppInstanceId" type="co:AppInstanceId"/>
+            <xs:element name="terminalActionData" type="co:TerminalActionData"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EntitlementIssuanceInformation" id="_49b60c5c-002a-472c-a272-8568187acdd7">
+        <xs:annotation>
+            <xs:documentation>Information about the entitlement to be issued to the user medium application.</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="entitlementIssuanceParameters" type="eui:IssueEntitlement">
+                <xs:annotation>
+                    <xs:documentation>Technical parameters to issue the entitlement to the user medium with application.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="entitlementIssuedMetadata" type="po:EntitlementIssuedMetadata" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Entitlement issued metadata to be used in the entitlement issued notification.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="replacedEntitlementId" type="co:EntitlementId" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        ID of the entitlement that is (logically) replaced by this entitlement.
+                        Only filled in case the entitlement was re-issued, e.g. to a new user medium or due to changed
+                        product parameters.
+                        The replaced entitlement should have been terminated before.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="IssueEntitlements" id="_13205ec7-53fd-4b8f-9fea-49232b136ffc">
+        <xs:annotation>
+            <xs:documentation>Issue entitlements to the user medium application using the given data.</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="umAppInstanceId" type="co:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>App instance ID of the target user medium with application.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="entitlementIssuanceInformation" type="tns:EntitlementIssuanceInformation"
+                        maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Information about the entitlement to be issued to the user medium with application.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SamConfigurationData" id="_44a252f8-8b78-4f8f-a54c-aa99bc734855">
+        <xs:annotation>
+            <xs:documentation>Configure SAM using the given data.</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="samId" type="co:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>App instance ID of the target SAM.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="versionOfConfiguration" type="co:ConfigurationVersion">
+                <xs:annotation>
+                    <xs:documentation>Version number of configuration</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="certificate" type="xs:hexBinary" maxOccurs="3">
+                <xs:annotation>
+                    <xs:documentation>max 3 certificates of a certificate chain for SAM configuration</xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:binary>
+                                <meta:asn1contentOfType>Org-eticore-cvCertificates.CvCertificate</meta:asn1contentOfType>
+                            </meta:binary>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="configurationStep" type="xs:hexBinary" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>APDU commands for executing SAM configuration</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SamResetData" id="_d04747b6-8aa4-4f17-8b23-5c03f82c645a">
+        <xs:annotation>
+            <xs:documentation>Reset SAM using the given data.</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="samId" type="co:AppInstanceId">
+                <xs:annotation>
+                    <xs:documentation>App instance ID of the target SAM.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="versionOfConfiguration" type="co:ConfigurationVersion">
+                <xs:annotation>
+                    <xs:documentation>Version number of configuration</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="resetStep" type="xs:hexBinary" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>APDU commands for executing SAM reset</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="TariffModuleData" id="_85130316-ee0f-45c7-ab12-740233f98a4b">
+        <xs:annotation>
+            <xs:documentation>
+                Contains information about tariff module(s). Can be defined as required by PO/CCP
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:base64Binary"/>
+    </xs:simpleType>
+
+    <xs:complexType name="TAddressingInformation" id="_84706c00-3cc1-440e-aa8b-50bf74cede9f">
+        <xs:annotation>
+            <xs:documentation>
+                Structure containing information that may be used to address a terminal or an internal system.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="orgId" type="co:OrganisationId" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Organisation ID</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="role" type="co:PartnerRoleCode" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>IFM role</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="service" type="ion:ServiceName" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Service</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="systemInstanceId" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>System instance ID</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="terminalType" type="co:DeviceTypeCode" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Terminal type</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="terminalNumber" type="co:TerminalNumber" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Terminal number</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TCommunicationInformation" id="_832934e3-34a1-42a9-9d44-8d459aa89f0e">
+        <xs:annotation>
+            <xs:documentation>
+                Structure containing information similar to the ion communication information, but to be used for internal communication, e.g. with a terminal.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="sender" type="tns:TAddressingInformation" minOccurs="0"/>
+            <xs:element name="receiver" type="tns:TAddressingInformation" minOccurs="0"/>
+            <xs:element name="messageNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="messageTimestamp" type="co:ZonedDateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Timestamp when the message was sent via the ION by the originator (also adapted in retry scenarios).
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>transTransaktionsZeitpunkt</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="repeatCounter" type="ion:RepeatCounter" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Number of times this message has already been sent. Defaults to zero.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:old>
+                                    <meta:name>transWiederholungsZaehler</meta:name>
+                                </meta:old>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="processInstanceId" type="ion:ProcessInstanceId" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        ID of the process instance containing the name of the basic process and a UUID.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="correlationId" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
