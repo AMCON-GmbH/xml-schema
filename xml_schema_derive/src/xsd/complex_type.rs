@@ -177,73 +177,213 @@ mod tests {
     // then
     let action_list = get_complex_type(&schema, "IncrementalActionList");
 
+    let expected_elements = get_expected_elements();
+    let expected_choices = get_expected_choice();
+
     assert_eq!(
       action_list.sequence,
       Some(Sequence {
-        elements: vec![Element {
-          name: Some(String::from("incrementalListCycleInformation")),
-          r#type: Some(String::from("co:IncrementalListCycleInformation")),
-          ..std::default::Default::default()
-        }],
-        choices: vec![Choice {
-          elements: vec![
-            Element {
-              name: Some(String::from("entitlementIssuanceActionListEntry")),
-              r#type: Some(String::from(
-                "po-oa-management:EntitlementIssuanceActionListEntry"
-              )),
-              ..Default::default()
-            },
-            Element {
-              name: Some(String::from("entitlementTerminationActionListEntry")),
-              r#type: Some(String::from(
-                "po-oa-management:EntitlementTerminationActionListEntry"
-              )),
-              annotation: Some(Annotation {
-                id: None,
-                attributes: vec![],
-                documentation: Some(String::from(
-                  "Action list entry for an entitlement issuance."
-                ),),
-                app_info: Some(AppInfo {
-                  meta_info: Some(MetaInfo {
-                    xml: Some(Xml {
-                      old: vec![Old {
-                        name: String::from("txalisber"),
-                      },],
-                    },),
-                    binary: None,
-                  },),
-                },),
-              },),
-
-              ..Default::default()
-            },
-            Element {
-              name: Some(String::from("entitlementUnblockingActionListEntry")),
-              r#type: Some(String::from(
-                "po-oa-management:EntitlementUnblockingActionListEntry"
-              )),
-              ..Default::default()
-            },
-            Element {
-              name: Some(String::from("entitlementBlockingActionListEntry")),
-              r#type: Some(String::from(
-                "po-oa-management:EntitlementBlockingActionListEntry"
-              )),
-              ..Default::default()
-            },
-            Element {
-              name: Some(String::from("removeOrder")),
-              r#type: Some(String::from("po-oa-management:OrderId")),
-              ..Default::default()
-            },
-          ],
-          annotation: None,
-          min_occurences: Some(0),
-          max_occurences: Some(MaxOccurences::Unbounded),
-        }],
+        elements: expected_elements,
+        choices: expected_choices,
       })
     );
+  }
+
+  fn get_expected_elements() -> Vec<Element> {
+    vec![Element {
+      name: Some(String::from("incrementalListCycleInformation")),
+      r#type: Some(String::from("co:IncrementalListCycleInformation")),
+      annotation: Some(Annotation {
+        id: None,
+        attributes: vec![],
+        documentation: None,
+        app_info: Some(AppInfo {
+          meta_info: Some(MetaInfo {
+            xml: Some(Xml {
+              old: vec![
+                Old {
+                  name: String::from("amListeNummer"),
+                },
+                Old {
+                  name: String::from("amListeZeitstempel"),
+                },
+                Old {
+                  name: String::from("amListePruefsumme"),
+                },
+              ],
+            }),
+            binary: None,
+          }),
+        }),
+      }),
+      ..Default::default()
+    }]
+  }
+
+  fn get_expected_choice() -> Vec<Choice> {
+    vec![Choice {
+            elements: vec![
+                Element {
+                    name: Some(String::from("entitlementIssuanceActionListEntry")),
+                    r#type: Some(String::from(
+                        "po-oa-management:EntitlementIssuanceActionListEntry",
+                    )),
+                    annotation: Some(
+                        Annotation {
+                            id: None,
+                            attributes: vec![],
+                            documentation: Some(
+                                String::from( "Action list entry for an entitlement issuance."),
+                            ),
+                            app_info: Some(
+                                AppInfo {
+                                    meta_info: Some(
+                                        MetaInfo {
+                                            xml: Some(
+                                                Xml {
+                                                    old: vec![
+                                                        Old {
+                                                            name: String::from("txalisber"),
+                                                        },
+                                                    ],
+                                                },
+                                            ),
+                                            binary: None,
+                                        },
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+                    ..Default::default()
+                },
+                Element {
+                    name: Some(String::from("entitlementTerminationActionListEntry")),
+                    r#type: Some(String::from(
+                        "po-oa-management:EntitlementTerminationActionListEntry",
+                    )),
+                    annotation: Some(Annotation {
+                        id: None,
+                        attributes: vec![],
+                        documentation: Some(String::from(
+                            "Action list entry for an entitlement termination.",
+                        )),
+                        app_info: Some(AppInfo {
+                            meta_info: Some(MetaInfo {
+                                xml: Some(Xml {
+                                    old: vec![Old {
+                                        name: String::from("txrlisber"),
+                                    }],
+                                }),
+                                binary: None,
+                            }),
+                        }),
+                    }),
+                    ..Default::default()
+                },
+                Element {
+                    name: Some(String::from("entitlementUnblockingActionListEntry")),
+                    r#type: Some(String::from(
+                        "po-oa-management:EntitlementUnblockingActionListEntry",
+                    )),
+                    annotation: Some(
+                        Annotation {
+                            id: None,
+                            attributes: vec![],
+                            documentation: Some(
+                                String::from("Action list entry for an entitlement unblocking."),
+                            ),
+                            app_info: Some(
+                                AppInfo {
+                                    meta_info: Some(
+                                        MetaInfo {
+                                            xml: Some(
+                                                Xml {
+                                                    old: vec![
+                                                        Old {
+                                                            name: String::from("txelisber"),
+                                                        },
+                                                    ],
+                                                },
+                                            ),
+                                            binary: None,
+                                        },
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+
+                    ..Default::default()
+                },
+                Element {
+                    name: Some(String::from("entitlementBlockingActionListEntry")),
+                    r#type: Some(String::from(
+                        "po-oa-management:EntitlementBlockingActionListEntry",
+                    )),
+                    annotation: Some(
+                        Annotation {
+                            id: None,
+                            attributes: vec![],
+                            documentation: Some(
+                                String::from("Action list entry for an entitlement blocking."),
+                            ),
+                            app_info: Some(
+                                AppInfo {
+                                    meta_info: Some(
+                                        MetaInfo {
+                                            xml: Some(
+                                                Xml {
+                                                    old: vec![],
+                                                },
+                                            ),
+                                            binary: None,
+                                        },
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+
+                    ..Default::default()
+                },
+                Element {
+                    name: Some(String::from("removeOrder")),
+                    r#type: Some(String::from("po-oa-management:OrderId")),
+                    annotation: Some(
+                        Annotation {
+                            id: None,
+                            attributes: vec![],
+                            documentation: Some(
+                                String::from("Indicates that the corresponding action list entry has been removed from the action list."),
+                            ),
+                            app_info: Some(
+                                AppInfo {
+                                    meta_info: Some(
+                                        MetaInfo {
+                                            xml: Some(
+                                                Xml {
+                                                    old: vec![
+                                                        Old {
+                                                            name: String::from("txllisber"),
+                                                        },
+                                                    ],
+                                                },
+                                            ),
+                                            binary: None,
+                                        },
+                                    ),
+                                },
+                            ),
+                        },
+                    ),
+
+                    ..Default::default()
+                },
+            ],
+            annotation: None,
+            min_occurences: Some(0),
+            max_occurences: Some(MaxOccurences::Unbounded),
+        }]
   }
 }
