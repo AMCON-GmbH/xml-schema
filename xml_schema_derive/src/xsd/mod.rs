@@ -42,46 +42,42 @@ pub(crate) mod tests {
 
       clone
     }
-  }
 
-  pub fn assert_annotation_since(annotation: &Annotation, documentation: &str, since: &str) {
-    let actual = annotation.reduce_whitespaces();
+    pub fn assert_since(annotation: &Annotation, documentation: &str, since: &str) {
+      let actual = annotation.reduce_whitespaces();
 
-    let expected = Annotation {
-      id: None,
-      attributes: vec![],
-      documentation: Some(reduce_whitespace(documentation)),
-      app_info: Some(AppInfo {
-        meta_info: Some(MetaInfo {
-          xml: Some(Xml {
-            since: Some(String::from(since)),
-            ..Default::default()
+      let expected = Annotation {
+        id: None,
+        attributes: vec![],
+        documentation: Some(reduce_whitespace(documentation)),
+        app_info: Some(AppInfo {
+          meta_info: Some(MetaInfo {
+            xml: Some(Xml {
+              since: Some(String::from(since)),
+              ..Default::default()
+            }),
           }),
         }),
-      }),
-    };
+      };
 
-    assert_eq!(actual, expected);
-  }
+      assert_eq!(actual, expected);
+    }
 
-  pub fn assert_annotation_old_name(
-    annotation: &Annotation,
-    documentation: &str,
-    old_names: Vec<&str>,
-  ) {
-    let actual = annotation.reduce_whitespaces();
-    let actual_xml = actual.app_info.unwrap().meta_info.unwrap().xml.unwrap();
+    pub fn assert_old_name(annotation: &Annotation, documentation: &str, old_names: Vec<&str>) {
+      let actual = annotation.reduce_whitespaces();
+      let actual_xml = actual.app_info.unwrap().meta_info.unwrap().xml.unwrap();
 
-    // HashSet because order does not matter
-    let expected_old_names: HashSet<&str> = old_names.iter().copied().collect();
+      // HashSet because order does not matter
+      let expected_old_names: HashSet<&str> = old_names.iter().copied().collect();
 
-    assert_eq!(actual.id, None);
-    assert_eq!(actual.attributes, vec![]);
-    assert_eq!(actual.documentation, Some(reduce_whitespace(documentation)));
-    assert_eq!(actual_xml.since, None);
-    assert!(actual_xml
-      .old
-      .iter()
-      .all(|x| expected_old_names.contains(x.name.as_str())));
+      assert_eq!(actual.id, None);
+      assert_eq!(actual.attributes, vec![]);
+      assert_eq!(actual.documentation, Some(reduce_whitespace(documentation)));
+      assert_eq!(actual_xml.since, None);
+      assert!(actual_xml
+        .old
+        .iter()
+        .all(|x| expected_old_names.contains(x.name.as_str())));
+    }
   }
 }

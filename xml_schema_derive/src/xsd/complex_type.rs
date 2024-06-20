@@ -32,8 +32,8 @@ mod tests {
   use crate::xsd::element::Element;
   use crate::xsd::schema::Schema;
   use crate::xsd::sequence::Sequence;
-  use crate::xsd::simple_type::tests::assert_annotation_since;
   use std::fs;
+  use crate::xsd::annotation::Annotation;
 
   fn get_complex_type<'a>(schema: &'a Schema, type_name: &str) -> &'a ComplexType {
     schema
@@ -60,7 +60,7 @@ mod tests {
     assert_eq!(org_unit.attributes, vec![]);
     assert_eq!(org_unit.simple_content, None);
 
-    assert_annotation_since(
+    Annotation::assert_since(
       org_unit.annotation.as_ref().unwrap(),
       "Combination of organisation and its role in the IFM context.",
       "3.0.0",

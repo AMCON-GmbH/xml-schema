@@ -31,9 +31,7 @@ pub(crate) mod tests {
   };
   use crate::xsd::schema::Schema;
   use crate::xsd::simple_type::SimpleType;
-  pub use crate::xsd::tests::{
-    assert_annotation_old_name, assert_annotation_since, reduce_whitespace,
-  };
+  pub use crate::xsd::tests::reduce_whitespace;
 
   //region helpers
   impl SimpleType {
@@ -74,11 +72,11 @@ pub(crate) mod tests {
     }
 
     fn assert_annotation_old_name(&self, documentation: &str, old_names: Vec<&str>) {
-      assert_annotation_old_name(self.annotation.as_ref().unwrap(), documentation, old_names)
+      Annotation::assert_old_name(self.annotation.as_ref().unwrap(), documentation, old_names)
     }
 
     fn assert_annotation_since(&self, documentation: &str, since: &str) {
-      assert_annotation_since(self.annotation.as_ref().unwrap(), documentation, since);
+      Annotation::assert_since(self.annotation.as_ref().unwrap(), documentation, since);
     }
   }
 
