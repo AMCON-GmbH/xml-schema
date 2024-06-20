@@ -31,13 +31,14 @@ pub struct Schema {
 
 #[cfg(test)]
 mod schema_tests {
+  use std::collections::HashSet;
+  use std::default::Default;
+  use std::fmt::Debug;
   use std::fs;
 
   use pretty_assertions::assert_eq;
-  use std::default::Default;
-  use std::fmt::Debug;
 
-  use crate::xsd::annotation::{Annotation, AppInfo, MetaInfo, Old, Xml};
+  use crate::xsd::annotation::{Annotation, AppInfo, MetaInfo, Xml};
   use crate::xsd::restriction::{
     EnumRestrictionValue, NumericRestrictionValue, Restriction, StringRestrictionValue,
   };
@@ -82,44 +83,41 @@ mod schema_tests {
       assert_eq!(actual, expected);
     }
 
-    fn assert_annotation_old_name(&self, documentation: &str, old_name: &str) {
-      assert_eq!(
-        self.annotation.as_ref().unwrap().reduce_whitespaces(),
-        Annotation {
-          id: None,
-          attributes: vec![],
-          documentation: Some(reduce_whitespace(documentation)),
-          app_info: Some(AppInfo {
-            meta_info: Some(MetaInfo {
-              xml: Some(Xml {
-                since: None,
-                old: Some(Old {
-                  name: String::from(old_name)
-                }),
-              })
-            })
-          }),
-        }
-      )
+    fn assert_annotation_old_name(&self, documentation: &str, old_names: Vec<&str>) {
+      let actual = self.annotation.as_ref().unwrap().reduce_whitespaces();
+      let actual_xml = actual.app_info.unwrap().meta_info.unwrap().xml.unwrap();
+
+      // HashSet because order does not matter
+      let expected_old_names: HashSet<&str> = old_names.iter().copied().collect();
+
+      assert_eq!(actual.id, None);
+      assert_eq!(actual.attributes, vec![]);
+      assert_eq!(actual.documentation, Some(reduce_whitespace(documentation)));
+      assert_eq!(actual_xml.since, None);
+      assert!(actual_xml
+        .old
+        .iter()
+        .all(|x| expected_old_names.contains(x.name.as_str())));
     }
 
     fn assert_annotation_since(&self, documentation: &str, since: &str) {
-      assert_eq!(
-        self.annotation.as_ref().unwrap().reduce_whitespaces(),
-        Annotation {
-          id: None,
-          attributes: vec![],
-          documentation: Some(reduce_whitespace(documentation)),
-          app_info: Some(AppInfo {
-            meta_info: Some(MetaInfo {
-              xml: Some(Xml {
-                since: Some(String::from(since)),
-                ..Default::default()
-              })
-            })
+      let actual = self.annotation.as_ref().unwrap().reduce_whitespaces();
+
+      let expected = Annotation {
+        id: None,
+        attributes: vec![],
+        documentation: Some(reduce_whitespace(documentation)),
+        app_info: Some(AppInfo {
+          meta_info: Some(MetaInfo {
+            xml: Some(Xml {
+              since: Some(String::from(since)),
+              ..Default::default()
+            }),
           }),
-        }
-      )
+        }),
+      };
+
+      assert_eq!(actual, expected);
     }
   }
 
@@ -275,12 +273,12 @@ mod schema_tests {
 
     zoned_date_time.assert_annotation_old_name(
       "Derivative of xs:dateTime with required timezone component.",
-      "DateTime",
+      vec!["DateTime"],
     );
   }
 
   #[test]
-  fn de_simple_type_enum() {
+  fn de_simple_type_int_enum() {
     // given
     let xsd = fs::read_to_string("fixtures/common-enums.xsd").unwrap();
 
@@ -295,6 +293,7 @@ mod schema_tests {
       hotlisting_demand_result.id,
       "_c3157b6a-3e65-442e-af65-d9b72ecd7851"
     );
+
     assert_eq!(
       hotlisting_demand_result.name.as_str(),
       "HotlistingDemandResultEnum"
@@ -302,7 +301,7 @@ mod schema_tests {
 
     hotlisting_demand_result.assert_annotation_old_name(
             "Code enumeration of possible responses for a previous hotlisting demand. See also HotlistingDemandResultCode.",
-            "Mitteilung_CODE_Type"
+            vec!["Mitteilung_CODE_Type"]
         );
 
     hotlisting_demand_result.assert_enum_restriction(
@@ -314,6 +313,49 @@ mod schema_tests {
         "3",
         "Not accepted (no further action from the requesting system expected)."
       )],
+    );
+  }
+
+  #[test]
+  fn de_simple_type_string_enum() {
+    // given
+    let xsd = fs::read_to_string("fixtures/hotlist-enums.xsd").unwrap();
+
+    // when
+    let schema: Schema = yaserde::de::from_str(xsd.as_str()).unwrap();
+
+    // then
+    let unclaimed_list_type_enum: &SimpleType = get_simple_type(&schema, "UnclaimedListTypeEnum");
+
+    assert_eq!(
+      unclaimed_list_type_enum.id,
+      "_ed07d0a9-ca8c-45cc-86a8-9fb3a78fd58a"
+    );
+
+    assert_eq!(
+      unclaimed_list_type_enum.name.as_str(),
+      "UnclaimedListTypeEnum"
+    );
+
+    unclaimed_list_type_enum.assert_annotation_old_name(
+      "Types of lists that might be unclaimed from the hotlist service. \
+      Does not distinguish, e.g., between full or incremental hotlists variants.",
+      vec![
+        "ListenTypDNMEnumType",
+        "ListenTypEnumType",
+        "ListenGrundTypEnumType",
+      ],
+    );
+
+    unclaimed_list_type_enum.assert_enum_restriction(
+      "co:StringEnumMarker",
+      vec![
+        get_enum_value("APP", "Hotlist for applications."),
+        get_enum_value("ENT", "Hotlist for entitlements."),
+        get_enum_value("SAM", "Hotlist for SAMs."),
+        get_enum_value("ORG", "Hotlist for organisations."),
+        get_enum_value("SYMKEY", "Hotlist for symmetric authentication keys."),
+      ],
     );
   }
 }

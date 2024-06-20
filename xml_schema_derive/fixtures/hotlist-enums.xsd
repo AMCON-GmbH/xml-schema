@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema version="3.0.0-rc.3"
+           targetNamespace="https://eticore.org/hotlist/3"
+           xmlns:tns="https://eticore.org/hotlist/3"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:co="https://eticore.org/common/3"
+           xmlns:meta="urn:ets:metainfo"
+           elementFormDefault="qualified">
+
+    <xs:annotation>
+        <xs:documentation>
+            Schema that defines enumerations used in the hotlist service environment.
+            These enumerations enable the semantic check in the system business logic but require additional implementation.
+            In Java, the JAXB compiler does not create Java enumerations from the XSD enumeration elements
+            if these elements are not based on strings or have numeric names.
+            As described in https://docs.oracle.com/javase/tutorial/jaxb/intro/custom.html, you can employ
+            additional binding files to help the JAXB compiler to generate Java enum patterns.
+            Version 3.0.0-rc.3
+        </xs:documentation>
+        <xs:appinfo>
+            <meta:deletedXmlConcepts>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/kose/types/2">SperrStatus_Type</meta:name>
+                    <meta:reason>SperrStatus replaced by explicit deletion type</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/kose/types/2">ListStatusErrorCode</meta:name>
+                    <meta:reason>List status confirmation dropped</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/kose/types/2">SperrlistenErgebnisCode</meta:name>
+                    <meta:reason>Converted to warning</meta:reason>
+                </meta:deleted>
+                <meta:deleted>
+                    <meta:name xmlns="http://vdv/ka/kose/2">TXInfOrgErgebnisStruktur_Type</meta:name>
+                    <meta:reason>Converted to warning</meta:reason>
+                </meta:deleted>
+            </meta:deletedXmlConcepts>
+        </xs:appinfo>
+    </xs:annotation>
+
+    <!-- for EnumMarker -->
+    <xs:import namespace="https://eticore.org/common/3" schemaLocation="../../../../org/eticore/common/3/common.xsd"/>
+
+    <xs:simpleType name="EntitlementBlockingModeCode" id="_41ae3f20-1431-4382-8048-af03ae004029">
+        <xs:annotation>
+            <xs:documentation>
+                The entitlement blocking mode code provides information to the inspection staff or validation terminals,
+                as to how the entitlement or the customer is to be treated (confiscate the user medium or not), if the
+                entitlement is hotlisted but still used.
+                See also EntitlementBlockingModeEnum.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/kose/types/2">SperrModus_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="co:EnumMarker"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="EntitlementBlockingModeEnum" id="_f4cd09df-a289-45ac-8d44-4992d0eff67b">
+        <xs:annotation>
+            <xs:documentation>
+                The entitlement blocking mode code provides information to the inspection staff or validation terminals,
+                as to how the customer entitlement is to be treated, if the entitlement is hotlisted but still used.
+                Note: blocking an entitlement does not cause the user medium to be confiscated.
+                See also EntitlementBlockingModeCode.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/kose/types/2">SperrModusEnum_Type</meta:name>
+                            <meta:deletedValue>
+                                <meta:value>1</meta:value>
+                                <meta:documentation>Applikation sperren mit Synchronnummernauswertung mit Einzug des Nutzermediums</meta:documentation>
+                                <meta:reason>enum split into two, value only applicable for applications</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>10</meta:value>
+                                <meta:documentation>Applikation sperren ohne Synchronnummernauswertung</meta:documentation>
+                                <meta:reason>enum split into two, value only applicable for applications</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>11</meta:value>
+                                <meta:documentation>Applikation sperren ohne Synchronnummernauswertung mit Einzug des Nutzermediums</meta:documentation>
+                                <meta:reason>enum split into two, value only applicable for applications</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>21</meta:value>
+                                <meta:documentation>Berechtigung sperren ohne Synchronnummernauswertung mit Einzug des Nutzermediums</meta:documentation>
+                                <meta:reason>UM confiscation is now an application hotlist entry feature only, not applicable to entitlement hotlist entries any more</meta:reason>
+                            </meta:deletedValue>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="tns:EntitlementBlockingModeCode">
+            <xs:enumeration value="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Default entitlement blocking.
+
+                        For entitlements on a user medium with application:
+                        Block the entitlement considering the entitlement transition counter.
+
+                        For static entitlements:
+                        It is not allowed
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Sperrung der Applikation oder Berechtigung ohne Einzug des Nutzermediums</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="2">
+                <xs:annotation>
+                    <xs:documentation>
+                        Temporary entitlement hotlisting.
+                        Reject the UM or static entitlement without considering the entitlement transition counter.
+                        Do not change the entitlement status of entitlements on a user medium with application.
+                        Does not lead to extended logging.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Temporaere Berechtigungssperre (keine Statusaenderung vornehmen, aber Akzeptanz ablehnen)</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="20">
+                <xs:annotation>
+                    <xs:documentation>
+                        For entitlements on a user medium with application:
+                        Block the entitlement without considering the entitlement transition counter.
+
+                        For static entitlements:
+                        Reject the static entitlement without considering the entitlement transition counter.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Berechtigung sperren ohne Synchronnummernauswertung</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ApplicationBlockingModeCode" id="_4d4de3c0-5df7-4878-bab7-4a891de8a8a2">
+        <xs:annotation>
+            <xs:documentation>
+                The application blocking mode code provides information to the inspection staff or validation terminals,
+                as to how the application or customer is to be treated (confiscate the user medium or not), if the
+                application is hotlisted but still used.
+                See also ApplicationBlockingModeEnum.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/kose/types/2">SperrModus_Type</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="co:EnumMarker"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="ApplicationBlockingModeEnum" id="_ae84eebf-8720-4dc5-b9ac-381ef4a3d27a">
+        <xs:annotation>
+            <xs:documentation>
+                The application blocking mode code provides information to the inspection staff or validation terminals,
+                as to how the customer application has to be treated (confiscate the user medium or not), if
+                the application is hotlisted but still used.
+                See also ApplicationBlockingModeCode.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/kose/types/2">SperrModusEnum_Type</meta:name>
+                            <meta:deletedValue>
+                                <meta:value>2</meta:value>
+                                <meta:documentation>Temporaere Berechtigungssperre (keine Statusaenderung vornehmen, aber Akzeptanz ablehnen)</meta:documentation>
+                                <meta:reason>enum split into two, value only applicable for entitlements</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>20</meta:value>
+                                <meta:documentation>Berechtigung sperren ohne Synchronnummernauswertung</meta:documentation>
+                                <meta:reason>enum split into two, value only applicable for entitlements</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>21</meta:value>
+                                <meta:documentation>Berechtigung sperren ohne Synchronnummernauswertung mit Einzug des Nutzermediums</meta:documentation>
+                                <meta:reason>enum split into two, value only applicable for entitlements</meta:reason>
+                            </meta:deletedValue>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="tns:ApplicationBlockingModeCode">
+            <xs:enumeration value="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Default application blocking.
+                        Do not confiscate the user medium.
+
+                        For user medium with application:
+                        Block the application considering the application transition counter.
+
+                        For Motics app:
+                        Mode is not applicable.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Sperrung der Applikation oder Berechtigung ohne Einzug des Nutzermediums</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        For user medium with application:
+                        Block the application considering the application transition counter.
+                        Confiscate the user medium if possible.
+
+                        For Motics app:
+                        Mode is not applicable.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Sperrung der gesamten Applikation mit Einzug des Nutzermediums</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="10">
+                <xs:annotation>
+                    <xs:documentation>
+                        For user medium with application:
+                        Block the application without considering the application transition counter.
+                        Do not confiscate the user medium.
+
+                        For Motics app:
+                        Reject the motics app.
+                        Do not confiscate the user medium.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Applikation sperren ohne Synchronnummernauswertung</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="11">
+                <xs:annotation>
+                    <xs:documentation>
+                        For user medium with application:
+                        Block the application without considering the application transition counter.
+                        Confiscate the user medium if possible.
+
+                        For Motics app:
+                        Mode is not applicable.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Applikation sperren ohne Synchronnummernauswertung mit Einzug des Nutzermediums</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="UnclaimedListTypeEnum" id="_ed07d0a9-ca8c-45cc-86a8-9fb3a78fd58a">
+        <xs:annotation>
+            <xs:documentation>Types of lists that might be unclaimed from the hotlist service.
+                Does not distinguish, e.g., between full or incremental hotlists variants.</xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/kose/types/2">ListenTypEnumType</meta:name>
+                        </meta:old>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/kose/types/2">ListenGrundTypEnumType</meta:name>
+                            <meta:deletedValue>
+                                <meta:value>SNW</meta:value>
+                                <meta:documentation>Sperrnachweisliste</meta:documentation>
+                                <meta:reason>List type obsolete</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>ASYMKEY</meta:value>
+                                <meta:documentation>Sperrliste asymmetrische Schluessel</meta:documentation>
+                                <meta:reason>List type obsolete</meta:reason>
+                            </meta:deletedValue>
+                            <meta:deletedValue>
+                                <meta:value>DNM</meta:value>
+                                <meta:documentation>Differenzperrliste Nutzermedien</meta:documentation>
+                                <meta:reason>Not helpful in the context of unclaimed lists</meta:reason>
+                            </meta:deletedValue>
+                        </meta:old>
+                        <meta:old>
+                            <meta:name xmlns="http://vdv/ka/kose/types/2">ListenTypDNMEnumType</meta:name>
+                        </meta:old>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="co:StringEnumMarker">
+            <xs:enumeration value="APP">
+                <xs:annotation>
+                    <xs:documentation>Hotlist for applications.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:value>NM</meta:value>
+                                    <meta:documentation>Sperrliste Nutzermedien</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="ENT">
+                <xs:annotation>
+                    <xs:documentation>Hotlist for entitlements.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:value>NM</meta:value>
+                                    <meta:documentation>Sperrliste Nutzermedien</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="SAM">
+                <xs:annotation>
+                    <xs:documentation>
+                        Hotlist for SAMs.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Sperrliste SAMs</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="ORG">
+                <xs:annotation>
+                    <xs:documentation>
+                        Hotlist for organisations.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Sperrliste Organisatonen</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="SYMKEY">
+                <xs:annotation>
+                    <xs:documentation>
+                        Hotlist for symmetric authentication keys.
+                    </xs:documentation>
+                    <xs:appinfo>
+                        <meta:metaInfo>
+                            <meta:xml>
+                                <meta:oldValue>
+                                    <meta:sameValue/>
+                                    <meta:documentation>Sperrliste symmetrische Schluessel</meta:documentation>
+                                </meta:oldValue>
+                            </meta:xml>
+                        </meta:metaInfo>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
