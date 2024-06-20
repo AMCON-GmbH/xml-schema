@@ -1,0 +1,112 @@
+<xs:schema version="3.0.0-rc.3"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://eticore.org/individualisation-common/3"
+           xmlns:tns="https://eticore.org/individualisation-common/3"
+           xmlns:meta="urn:ets:metainfo"
+           elementFormDefault="qualified">
+
+    <xs:annotation>
+        <xs:documentation>
+            This schema contains enumerations which are used in the environment
+            of the media individualisation.
+            Version 3.0.0-rc.3
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:simpleType name="SamFullEnvironmentEnum" id="_fc3a97f7-7507-4ffa-a3b8-b2fb5e0a4d29">
+        <xs:annotation>
+            <xs:documentation>
+                List of environments of SAM (full functionality).
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SAM_FULL.DEVTEST"/>
+            <xs:enumeration value="SAM_FULL.STAGING"/>
+            <xs:enumeration value="SAM_FULL.PRODUCTION"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SamLimitedEnvironmentEnum" id="_bf6fe4f6-93f5-42db-9596-54b86f0e24dc">
+        <xs:annotation>
+            <xs:documentation>
+                List of environments of SAM (limited functionality).
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SAM_LIMITED.DEVTEST"/>
+            <xs:enumeration value="SAM_LIMITED.STAGING"/>
+            <xs:enumeration value="SAM_LIMITED.PRODUCTION"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="UmFullEnvironmentEnum" id="_50a31bb6-e35b-4f33-a975-211ba36b6ddb">
+        <xs:annotation>
+            <xs:documentation>
+                List of environments of UM (full functionality).
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="UM_FULL.DEVTEST"/>
+            <xs:enumeration value="UM_FULL.STAGING"/>
+            <xs:enumeration value="UM_FULL.PRODUCTION"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="UmLimitedEnvironmentEnum" id="_3eb877d5-4f60-4ebe-993f-2c74d269b47f">
+        <xs:annotation>
+            <xs:documentation>
+                List of environments of UM (limited functionality).
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="UM_LIMITED.DEVTEST"/>
+            <xs:enumeration value="UM_LIMITED.STAGING"/>
+            <xs:enumeration value="UM_LIMITED.PRODUCTION"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="MediaEnvironmentEnum" id="_2f150456-f4a6-4858-8386-07388a41a29b">
+        <xs:annotation>
+            <xs:documentation>
+                List of environments of UM and SAM.
+            </xs:documentation>
+            <xs:appinfo>
+                <meta:metaInfo>
+                    <meta:xml>
+                        <meta:since>3.0.0</meta:since>
+                    </meta:xml>
+                </meta:metaInfo>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:union memberTypes="tns:SamFullEnvironmentEnum tns:SamLimitedEnvironmentEnum tns:UmFullEnvironmentEnum tns:UmLimitedEnvironmentEnum"/>
+    </xs:simpleType>
+
+</xs:schema>

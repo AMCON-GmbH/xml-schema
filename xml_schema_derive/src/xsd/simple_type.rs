@@ -32,6 +32,7 @@ pub(crate) mod tests {
   use crate::xsd::schema::Schema;
   use crate::xsd::simple_type::SimpleType;
   pub use crate::xsd::tests::reduce_whitespace;
+  use crate::xsd::union::Union;
 
   //region helpers
   impl SimpleType {
@@ -294,6 +295,26 @@ pub(crate) mod tests {
         get_enum_value("ORG", "Hotlist for organisations."),
         get_enum_value("SYMKEY", "Hotlist for symmetric authentication keys."),
       ],
+    );
+  }
+
+  #[test]
+  fn de_union_should_contain_correct_member_types() {
+    // given
+    let xsd = fs::read_to_string("fixtures/individualisation-common-enums.xsd").unwrap();
+
+    // when
+    let schema: Schema = yaserde::de::from_str(xsd.as_str()).unwrap();
+
+    // then
+    let media_enum: &SimpleType = get_simple_type(&schema, "MediaEnvironmentEnum");
+    assert_eq!(
+      media_enum.union,
+      Some(
+        Union {
+          member_types: String::from("tns:SamFullEnvironmentEnum tns:SamLimitedEnvironmentEnum tns:UmFullEnvironmentEnum tns:UmLimitedEnvironmentEnum")
+        }
+      )
     );
   }
 }
