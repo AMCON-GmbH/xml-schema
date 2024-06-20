@@ -36,6 +36,18 @@ mod tests {
   use std::fs;
 
   #[test]
+  fn de_schema_should_contain_the_correct_target_namespace() {
+    // given
+    let xsd = fs::read_to_string("fixtures/common.xsd").unwrap();
+
+    // when
+    let schema: Schema = yaserde::de::from_str(xsd.as_str()).unwrap();
+
+    // then
+    assert_eq!(schema.target_namespace, Some(String::from("https://eticore.org/common/3")));
+  }
+  
+  #[test]
   fn de_schema_should_contain_all_simple_types_from_xsd() {
     // given
     let xsd = fs::read_to_string("fixtures/common.xsd").unwrap();
