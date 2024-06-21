@@ -18,7 +18,7 @@ pub struct SimpleType {
 /// Each test deserializes the xsd to Schema and then finds the simple type to test, in contrast to directly deserializing SimpleType.
 /// That is because isolated SimpleTypes do not exist and namespaces can only be checked in the context of a Schema.
 #[cfg(test)]
-pub(crate) mod tests {
+mod tests {
   use std::default::Default;
   use std::fmt::Debug;
   use std::fs;
