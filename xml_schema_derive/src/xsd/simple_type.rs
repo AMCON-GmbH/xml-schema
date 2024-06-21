@@ -79,7 +79,7 @@ pub(crate) mod tests {
 
   fn get_simple_type<'a>(schema: &'a Schema, type_name: &str) -> &'a SimpleType {
     schema
-      .simple_type
+      .simple_types
       .iter()
       .find(|x| x.name == type_name)
       .unwrap()

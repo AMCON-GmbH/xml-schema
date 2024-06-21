@@ -18,15 +18,15 @@ pub struct Schema {
   #[yaserde(rename = "element")]
   pub elements: Vec<element::Element>,
   #[yaserde(rename = "simpleType")]
-  pub simple_type: Vec<simple_type::SimpleType>,
+  pub simple_types: Vec<simple_type::SimpleType>,
   #[yaserde(rename = "complexType")]
-  pub complex_type: Vec<complex_type::ComplexType>,
+  pub complex_types: Vec<complex_type::ComplexType>,
   #[yaserde(rename = "attribute")]
   pub attributes: Vec<attribute::Attribute>,
   #[yaserde(rename = "attributeGroup")]
-  pub attribute_group: Vec<attribute_group::AttributeGroup>,
+  pub attribute_groups: Vec<attribute_group::AttributeGroup>,
   #[yaserde(rename = "group")]
-  pub group: Vec<group::Group>,
+  pub groups: Vec<group::Group>,
 }
 
 #[cfg(test)]
@@ -66,7 +66,7 @@ mod tests {
 
     // then
     assert!(schema
-      .simple_type
+      .simple_types
       .iter()
       .all(|x| expected_simple_type_names.contains(x.name.as_str())));
   }
@@ -116,7 +116,7 @@ mod tests {
 
     // then
     assert!(schema
-      .complex_type
+      .complex_types
       .iter()
       .all(|x| expected_complex_type_names.contains(x.name.as_str())));
   }
