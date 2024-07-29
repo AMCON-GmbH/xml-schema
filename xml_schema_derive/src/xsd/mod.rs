@@ -1,22 +1,22 @@
-mod annotation;
-mod attribute;
-mod attribute_group;
-mod complex_content;
-mod complex_type;
-mod element;
-mod extension;
-mod group;
-mod import;
-mod list;
-mod max_occurences;
-mod qualification;
-mod restriction;
+pub mod annotation;
+pub mod attribute;
+pub mod attribute_group;
+pub mod complex_content;
+pub mod complex_type;
+pub mod element;
+pub mod extension;
+pub mod group;
+pub mod import;
+pub mod list;
+pub mod max_occurences;
+pub mod qualification;
+pub mod restriction;
 pub mod schema;
-mod sequence;
-mod simple_content;
-mod simple_type;
-mod union;
-mod choice;
+pub mod sequence;
+pub mod simple_content;
+pub mod simple_type;
+pub mod union;
+pub mod choice;
 
 /// Common test utility functions.
 #[cfg(test)]
