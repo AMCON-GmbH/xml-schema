@@ -46,6 +46,10 @@ pub struct Binary {
   prefix = "meta",
   namespace = "meta: urn:ets:metainfo")]
   pub asn1_tag: Option<String>,
+  #[yaserde(rename = "asn1Identifier"
+  prefix = "meta",
+  namespace = "meta: urn:ets:metainfo")]
+  pub asn1_identifier: Option<String>,
 }
 
 #[derive(Clone, Default, Debug, PartialEq, YaDeserialize)]
