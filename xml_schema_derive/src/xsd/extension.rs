@@ -2,17 +2,17 @@ use crate::xsd::{attribute::Attribute, group::Group, sequence::Sequence};
 
 #[derive(Clone, Default, Debug, PartialEq, YaDeserialize)]
 #[yaserde(
-  root = "extension",
+  rename = "extension",
   prefix = "xs",
-  namespace = "xs: http://www.w3.org/2001/XMLSchema"
+  namespaces = { "xs" = "http://www.w3.org/2001/XMLSchema" }
 )]
 pub struct Extension {
-  #[yaserde(attribute)]
+  #[yaserde(attribute = true)]
   pub base: String,
-  #[yaserde(rename = "attribute")]
+  #[yaserde(rename = "attribute", prefix = "xs")]
   pub attributes: Vec<Attribute>,
-  #[yaserde(rename = "sequence")]
+  #[yaserde(rename = "sequence", prefix = "xs")]
   pub sequences: Vec<Sequence>,
-  #[yaserde(rename = "group")]
+  #[yaserde(rename = "group", prefix = "xs")]
   pub group: Option<Group>,
 }

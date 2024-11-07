@@ -5,21 +5,21 @@ use crate::xsd::simple_type::SimpleType;
 #[yaserde(
   rename = "attribute",
   prefix = "xs",
-  namespace = "xs: http://www.w3.org/2001/XMLSchema"
+  namespaces = {"xs" = "http://www.w3.org/2001/XMLSchema" }
 )]
 pub struct Attribute {
-  #[yaserde(prefix = "xs", attribute)]
+  #[yaserde(prefix = "xs", attribute = true)]
   pub name: Option<String>,
-  #[yaserde(rename = "type", attribute)]
+  #[yaserde(rename = "type", attribute = true)]
   pub r#type: Option<String>,
-  #[yaserde(rename = "use", attribute)]
+  #[yaserde(rename = "use", attribute = true)]
   pub required: Required,
-  #[yaserde(rename = "ref", attribute)]
+  #[yaserde(rename = "ref", attribute = true)]
   pub refers: Option<String>,
-  #[yaserde(rename = "simpleType")]
+  #[yaserde(rename = "simpleType", prefix = "xs")]
   pub simple_type: Option<SimpleType>,
-  #[yaserde(rename = "annotation")]
-  pub annotation: Option<Annotation>
+  #[yaserde(rename = "annotation", prefix = "xs")]
+  pub annotation: Option<Annotation>,
 }
 
 #[derive(Clone, Debug, Default, PartialEq, YaDeserialize)]

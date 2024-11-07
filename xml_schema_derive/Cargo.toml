@@ -22,13 +22,13 @@ pretty_assertions = "1.4.0"
 
 [dependencies]
 darling = "0.20.3"
-heck = "0.4"
+heck = "0.5.0"
 log = "0.4"
 proc-macro2 = "1.0"
 quote = "1.0"
-reqwest = { version = "0.11", default-features = false, features = ["blocking"] }
-simple_logger = "4"
+reqwest = { version = "0.12", default-features = false, features = ["blocking"] }
+simple_logger = "5"
 syn = { version = "2.0", features = ["visit", "extra-traits"] }
 xml-rs = "0.8"
-yaserde_derive = { version = "0.10.1" }
-yaserde = { version = "0.10.1" }
+yaserde_derive = { version = "0.12.0" }
+yaserde = { version = "0.12.0" }

@@ -1,6 +1,7 @@
 pub mod annotation;
 pub mod attribute;
 pub mod attribute_group;
+pub mod choice;
 pub mod complex_content;
 pub mod complex_type;
 pub mod element;
@@ -16,7 +17,6 @@ pub mod sequence;
 pub mod simple_content;
 pub mod simple_type;
 pub mod union;
-pub mod choice;
 
 /// Common test utility functions.
 #[cfg(test)]
@@ -54,8 +54,9 @@ pub(crate) mod tests {
           meta_info: Some(MetaInfo {
             xml: Some(Xml { old: vec![] }),
             binary: expected_asn1_tag.map(|tag| Binary {
-                asn1_tag: Some(String::from(tag)),
-              }),
+              asn1_tag: Some(String::from(tag)),
+              asn1_identifier: None,
+            }),
           }),
         }),
       };

@@ -5,27 +5,27 @@ use crate::xsd::{
 };
 
 #[derive(Clone, Default, Debug, PartialEq, YaDeserialize)]
-#[yaserde(rename = "complexType"
-prefix = "xs",
-namespace = " http://www.w3.org/2001/XMLSchema")]
+#[yaserde(rename = "complexType",
+    prefix = "xs",
+    namespaces = { "xs" = "http://www.w3.org/2001/XMLSchema" })]
 pub struct ComplexType {
-  #[yaserde(attribute)]
+  #[yaserde(attribute = true)]
   pub name: String,
-  #[yaserde(attribute)]
+  #[yaserde(attribute = true)]
   pub id: String,
-  #[yaserde(rename = "attribute")]
+  #[yaserde(rename = "attribute", prefix = "xs")]
   pub attributes: Vec<Attribute>,
-  #[yaserde(rename = "sequence")]
+  #[yaserde(rename = "sequence", prefix = "xs")]
   pub sequence: Option<Sequence>,
-  #[yaserde(rename = "choice")]
+  #[yaserde(rename = "choice", prefix = "xs")]
   pub choice: Option<Choice>,
-  #[yaserde(rename = "simpleContent")]
+  #[yaserde(rename = "simpleContent", prefix = "xs")]
   pub simple_content: Option<SimpleContent>,
-  #[yaserde(rename = "complexContent")]
+  #[yaserde(rename = "complexContent", prefix = "xs")]
   pub complex_content: Option<ComplexContent>,
-  #[yaserde(rename = "annotation")]
+  #[yaserde(rename = "annotation", prefix = "xs")]
   pub annotation: Option<Annotation>,
-  #[yaserde(rename = "abstract", attribute)]
+  #[yaserde(rename = "abstract", attribute = true)]
   /// should default to false
   pub is_abstract: Option<bool>,
 }

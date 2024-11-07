@@ -4,14 +4,14 @@ use crate::xsd::attribute::Attribute;
 #[yaserde(
   rename = "attributeGroup",
   prefix = "xs",
-  namespace = "xs: http://www.w3.org/2001/XMLSchema"
+  namespaces = { "xs" = "http://www.w3.org/2001/XMLSchema" }
 )]
 pub struct AttributeGroup {
-  #[yaserde(prefix = "xs", attribute)]
+  #[yaserde(prefix = "xs", attribute = true)]
   pub name: Option<String>,
-  #[yaserde(rename = "ref", attribute)]
+  #[yaserde(rename = "ref", attribute = true)]
   pub reference: String,
-  #[yaserde(rename = "attribute")]
+  #[yaserde(rename = "attribute", prefix = "xs")]
   pub attributes: Vec<Attribute>,
   // #[yaserde(rename = "attributeGroup")]
   // pub attribute_group: Vec<AttributeGroup>,
