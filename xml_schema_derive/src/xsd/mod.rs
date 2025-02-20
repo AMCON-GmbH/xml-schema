@@ -56,6 +56,7 @@ pub(crate) mod tests {
             binary: expected_asn1_tag.map(|tag| Binary {
               asn1_tag: Some(String::from(tag)),
               asn1_identifier: None,
+              asn1_content_of_type: None,
             }),
           }),
         }),

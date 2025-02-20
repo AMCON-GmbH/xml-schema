@@ -52,6 +52,8 @@ pub struct Binary {
   pub asn1_tag: Option<String>,
   #[yaserde(rename = "asn1Identifier", prefix = "meta")]
   pub asn1_identifier: Option<String>,
+  #[yaserde(rename = "asn1contentOfType", prefix = "meta")]
+  pub asn1_content_of_type: Option<String>,
 }
 
 #[derive(Clone, Default, Debug, PartialEq, YaDeserialize)]
